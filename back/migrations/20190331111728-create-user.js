@@ -8,11 +8,34 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      type: {
+        allowNull: false,
+        type: Sequelize.ENUM,
+        values: [
+                    'administrator',
+                    'rappitendero',
+                    'client'
+                ],
+      },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
-      phone: {
+      id_number: {
+        allowNull: false,
         type: Sequelize.INTEGER
+      },
+      phone: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      email: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      password: {
+        allowNull: false,
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
