@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyC4VnrdQ_kQitlbeMz-LPZCb2laroW1SCY',
+    authDomain: 'rappi-lite.firebaseapp.com',
+    databaseURL: 'https://rappi-lite.firebaseio.com',
+    projectId: 'rappi-lite',
+    storageBucket: 'rappi-lite.appspot.com',
+    messagingSenderId: '40411324269'
+  }
 };
 
 /*
