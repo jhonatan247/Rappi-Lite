@@ -1,3 +1,7 @@
 module.exports = {
-    secret: 'mypreciuossecret'
+    secret: 'mypreciuossecret',
+    corsOptions: {
+        origin: 'front-url',
+        optionsSuccessStatus: 200
+      }
 };

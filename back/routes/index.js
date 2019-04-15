@@ -1,39 +1,22 @@
 var express = require('express');
-var router = express.Router();
-const userController = require('../controllers').user;
-const addressController = require('../controllers').address;
+var cors = require('cors');
+
+var config = require('../config/config.js');
 let authentication = require('../auth/authentication.js');
 let authorization = require('../auth/authorization.js');
-let user = require('./user');
+let user = require('../controllers/user.js');
 
-let home = (req, res) => {
-  res.json({
-    success: true,
-    message: 'Home page'
-  });
-}
+var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+// Example using cors: 
+/*
+app.get('/products/:id', cors(config.corsOptions), function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for only example.com.'})
 });
-// User
-router.post('/api/login', authentication.createToken);
-router.post('/api/signup', user.toRegister);
-//authorization must be used always when a protected resource is accessed
-router.post('/api/signout', authorization.checkToken, authentication.deleteToken);
-router.get('/api/home', authorization.checkToken, home);
-router.get('/api/user', userController.list);
-router.get('/api/user/:id', userController.getById);
-router.get('/api/user/:email', userController.getByEmail);
-router.put('/api/user/:id', userController.update);
-router.delete('/api/user/:id', userController.delete);
-// Address
-router.get('/api/address', addressController.list);
-router.get('/api/address/:id', addressController.getById);
-router.get('/api/address/:user_id', addressController.getByUserId);
-router.post('/api/address', addressController.add);
-router.put('/api/address/:id', addressController.update);
-router.delete('/api/address/:id', addressController.delete);
+*/
+
+router.post('/login', authentication.createToken);
+router.post('/signup', user.toRegister);
+router.post('/signout', authorization.checkToken, authentication.deleteToken);
 
 module.exports = router;
