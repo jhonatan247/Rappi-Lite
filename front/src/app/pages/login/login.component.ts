@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
       observe: 'response',
       responseType: 'blob'
     };
-    this.http.get("http://localhost:3000/api/user", this.options).subscribe(data=>console.log(data));
   }
   getHeaders(){
     const headers = new HttpHeaders();
