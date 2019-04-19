@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Md5} from 'ts-md5/dist/md5';
+import { Md5 } from 'ts-md5/dist/md5';
 
 @Component({
   selector: 'app-register-rappi',
@@ -13,25 +13,30 @@ export class RegisterRappiComponent implements OnInit {
   phone: number;
   document: number;
   email: string;
-  password: string = '';
+  password: string;
   type: string;
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient) {
+    this.password = '';
+  }
 
   ngOnInit() {}
 
   register() {
-    const res = this.http.post<any>("http://localhost:3000/api/signup", {
-      type: "rappitendero",
-      name: this.name,
-      id_number: this.document,
-      phone: this.phone,
-      email: this.email,
-      password: Md5.hashStr(this.password)
-    }).subscribe(
-        data=>{
+    const res = this.http
+      .post<any>('http://localhost:3000/api/signup', {
+        type: 'rappitendero',
+        name: this.name,
+        id_number: this.document,
+        phone: this.phone,
+        email: this.email,
+        password: Md5.hashStr(this.password)
+      })
+      .subscribe(
+        data => {
           console.log(data);
           this.router.navigate(['home-admin']);
-        },err=>console.log(err)
+        },
+        err => console.log(err)
       );
   }
 
