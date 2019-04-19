@@ -1,6 +1,6 @@
 const User = require('../models').User;
 
-let toRegister = (req, res) => {
+let register = (req, res) => {
   let email = req.body.email;
   let password = req.body.password;
   let type = req.body.type;
@@ -27,7 +27,7 @@ let toRegister = (req, res) => {
 }
 
 module.exports = {
-  toRegister: toRegister
+  register: register
 };
 
 /*

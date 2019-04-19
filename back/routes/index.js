@@ -17,7 +17,7 @@ app.get('/products/:id', cors(config.corsOptions), function (req, res, next) {
 */
 // User
 router.post('/login', authentication.createToken);
-router.post('/signup', user.toRegister);
+router.post('/signup', user.register);
 router.post('/signout', authorization.checkToken, authentication.deleteToken);
 
 module.exports = router;
