@@ -3,6 +3,7 @@ const config = require('../config/config.js');
 let User = require('../models').User;
 
 let createToken = (req, res, next) => {
+  console.log(req.body);
   let email = req.body.email;
   let password = req.body.password;
   if(email)
@@ -10,22 +11,29 @@ let createToken = (req, res, next) => {
       where: {email: email}
     })
     .then((user) =>{
+      user = user[0].dataValues;
       if (email && password) {
-        dbPassword = user[0] ? user[0].dataValues.password : "";
-        if (password === dbPassword) {
+        if (password === user.password) {
           let token = jwt.sign({email: email}, config.secret, {expiresIn: '24h'});
           console.log(token);
           res.json({
             success: true,
             message: 'Authentication successful',
-            token: token
+            token: token,
+            data:{
+              type: user.type,
+              name: user.name,
+              id_number: user.id_number,
+              phone: user.phone,
+              email: user.email,
+            }
           });
         } else {
           res.status(403).json({
             success: false,
             message: 'Incorrect email or password'
           });
-        }  
+        }
       } else {
         res.status(400).json({
           success: false,
@@ -42,7 +50,7 @@ let createToken = (req, res, next) => {
 }
 
 let deleteToken = (req, res) => {
-  //Manage the signout of a user. 
+  //Manage the signout of a user.
 }
 
 module.exports = {

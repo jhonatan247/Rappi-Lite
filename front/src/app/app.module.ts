@@ -12,6 +12,9 @@ import { HomeAdminComponent } from './pages/home-admin/home-admin.component';
 import { RegisterRappiComponent } from './pages/register-rappi/register-rappi.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { HttpModule} from '@angular/http';
+import { CommonModule} from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,7 @@ import { FooterComponent } from './components/footer/footer.component';
     HeaderComponent,
     FooterComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpModule, CommonModule,HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })
