@@ -4,7 +4,7 @@ const userController = require('../controllers').user;
 const addressController = require('../controllers').address;
 let authentication = require('../auth/authentication.js');
 let authorization = require('../auth/authorization.js');
-let user = require('./user');
+// let user = require('./user');
 
 let home = (req, res) => {
   res.json({
@@ -19,12 +19,13 @@ router.get('/', function(req, res, next) {
 });
 // User
 router.post('/api/login', authentication.createToken);
-router.post('/api/signup', user.toRegister);
+router.post('/api/signup', userController.register);
 //authorization must be used always when a protected resource is accessed
 router.post('/api/signout', authorization.checkToken, authentication.deleteToken);
 router.get('/api/home', authorization.checkToken, home);
 router.get('/api/user', userController.list);
 router.get('/api/user/:id', userController.getById);
+router.post('/api/user', userController.add);
 router.get('/api/user/:email', userController.getByEmail);
 router.put('/api/user/:id', userController.update);
 router.delete('/api/user/:id', userController.delete);

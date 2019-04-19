@@ -3,13 +3,25 @@
     <h2 style="color:#FF656B">Sign up</h2>
     <hr />
     <div class="form-group">
-      <label for="exampleInputEmail1">Name</label>
+      <label for="your name">Name</label>
       <input
         type="text"
         class="form-control"
         aria-describedby="nameHelp"
         placeholder="Enter your name"
         [(ngModel)]="name"
+      />
+    </div>
+    <div class="form-group">
+      <label for="your identification number">Identification number</label>
+      <input
+        type="number"
+        min="1"
+        step="1"
+        class="form-control"
+        aria-describedby="idNumberHelp"
+        placeholder="Enter your identification number"
+        [(ngModel)]="id_number"
       />
     </div>
     <div class="form-group">
@@ -24,6 +36,18 @@
       <small id="emailHelp" class="form-text text-muted"
         >We'll never share your email with anyone else.</small
       >
+    </div>
+    <div class="form-group">
+      <label for="your phone number">Phone number</label>
+      <input
+        type="number"
+        min="1"
+        step="1"
+        class="form-control"
+        aria-describedby="phoneHelp"
+        placeholder="Enter your phone number"
+        [(ngModel)]="phone"
+      />
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
