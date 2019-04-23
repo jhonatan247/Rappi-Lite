@@ -1,17 +1,12 @@
-<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
-=======
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
->>>>>>> update files"
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.sass"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
   email: string;
@@ -49,6 +44,6 @@ export class LoginComponent implements OnInit {
   }
 
   signUp() {
-    this.router.navigate(["sign-up"]);
+    this.router.navigate(['sign-up']);
   }
 }
