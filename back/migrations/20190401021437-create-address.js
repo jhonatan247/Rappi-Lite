@@ -12,9 +12,30 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
+      restaurant_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
       value: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        validate: {
+          notEmpty: true
+        }
+      },
+      latitude: {
+        allowNull: false,
+        type: Sequelize.DOUBLE,
+        validate: {
+          notEmpty: true
+        }
+      },
+      longitude: {
+        allowNull: false,
+        type: Sequelize.DOUBLE,
+        validate: {
+          notEmpty: true
+        }
       },
       createdAt: {
         allowNull: false,
