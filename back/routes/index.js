@@ -6,6 +6,9 @@ let authentication = require('../auth/authentication.js');
 let authorization = require('../auth/authorization.js');
 let user = require('../controllers/user.js');
 
+let address = require('../controllers/address.js');
+let restaurant = require('../controllers/restaurant.js');
+
 var router = express.Router();
 
 // Example using cors:
@@ -19,5 +22,8 @@ app.get('/products/:id', cors(config.corsOptions), function (req, res, next) {
 router.post('/login', authentication.createToken);
 router.post('/signup', user.register);
 router.post('/signout', authorization.checkToken, authentication.deleteToken);
+
+router.post('/address', address.save);
+router.get('/restaurants', restaurant.list);
 
 module.exports = router;
