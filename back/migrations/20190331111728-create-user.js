@@ -12,30 +12,52 @@ module.exports = {
         allowNull: false,
         type: Sequelize.ENUM,
         values: [
-                    'administrator',
-                    'rappitendero',
-                    'client'
-                ],
+          'administrator',
+          'rappitendero',
+          'client'
+        ],
+        validate: {
+          notEmpty: true
+        }
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        validate: {
+          notEmpty: true
+        }
       },
       id_number: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT,
+        unique: true,
+        validate: {
+          notEmpty: true,
+          not: ['[a-z]', 'i']
+        }
       },
       phone: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT,
+        validate: {
+          notEmpty: true,
+          not: ['[a-z]', 'i']
+        }
       },
       email: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        validate: {
+          notEmpty: true,
+          isEmail: true
+        }
       },
       password: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        validate: {
+          notEmpty: true
+        }
       },
       createdAt: {
         allowNull: false,

@@ -9,11 +9,20 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING
   }, {});
   User.associate = function(models) {
-    User.hasMany(models.Address,
-      {
-        foreignKey: 'user_id',
-        onDelete: 'cascade', hooks:true
-      })
+    User.hasOne(models.Address, {
+      foreignKey: 'user_id',
+      onDelete: 'cascade',
+      hooks: true
+    });
+    User.hasOne(models.ShoppingCar, {
+      foreignKey: 'user_id',
+      as: 'shoppingCar',
+    });
+    User.hasMany(models.Order, {
+      foreignKey: 'user_id',
+      as: 'orders',
+      onDelete: 'cascade'
+    });
   };
   return User;
 };
