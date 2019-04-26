@@ -8,6 +8,7 @@ let user = require('../controllers/user.js');
 
 let address = require('../controllers/address.js');
 let restaurant = require('../controllers/restaurant.js');
+let product = require('../controllers/product.js');
 
 var router = express.Router();
 
@@ -25,5 +26,6 @@ router.post('/signout', authorization.checkToken, authentication.deleteToken);
 
 router.post('/address', address.save);
 router.get('/restaurants', restaurant.list);
+router.post('/products', product.list);
 
 module.exports = router;
