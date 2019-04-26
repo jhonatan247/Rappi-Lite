@@ -1,3 +1,14 @@
-<p>
-  select-restaurant works!
-</p>
+<div class="container">
+  <div class="row mt-4">
+    <h3 class="ml-4">
+      <i class="fas fa-arrow-left" (click)="goBack()"></i> Restaurants
+    </h3>
+    <div
+      *ngFor="let restaurant of restaurants"
+      class="col-12  mb-4"
+      (click)="showRestaurants(restaurant)"
+    >
+      <app-restaurant [restaurant]="restaurant"> </app-restaurant>
+    </div>
+  </div>
+</div>

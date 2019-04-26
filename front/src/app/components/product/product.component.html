@@ -1,3 +1,21 @@
-<p>
-  product works!
-</p>
+<div class="card">
+  <img
+    class="card-img-top"
+    src="{{ product.url_img }}"
+    alt="Foto de {{ product.name }}"
+  />
+  <div class="card-body">
+    <div class="badges">
+      <span class="badge badge-warning">Lunch</span>
+      <span class="badge badge-info">Vegan</span>
+    </div>
+    <h5 class="card-title">{{ product.name }}</h5>
+    <p class="card-text">{{ product.description }}</p>
+    <div class="row">
+      <span class="offset-1">${{ product.price }}</span>
+    </div>
+    <div class="row">
+      <i class="fas fa-plus col-1 offset-10"></i>
+    </div>
+  </div>
+</div>

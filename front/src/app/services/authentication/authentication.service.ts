@@ -6,6 +6,8 @@ import { Md5 } from 'ts-md5/dist/md5';
   providedIn: 'root'
 })
 export class AuthenticationService {
+  currentUser: any;
+
   constructor(private http: HttpClient) {}
 
   validateAndLogin(userEmail: string, password: string): Promise<any> {
