@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'restaurant_id',
       onDelete: 'cascade'
     });
-    Restaurant.hasMany(models.Offer, {
-      foreignKey: 'restaurant_id'
+    Restaurant.hasMany(models.Product, {
+      foreignKey: 'restaurant_id',
     });
     Restaurant.hasMany(models.SchedulePerDay, {
       foreignKey: 'restaurant_id'
