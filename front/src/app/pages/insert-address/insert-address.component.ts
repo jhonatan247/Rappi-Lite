@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import {} from '@types/googlemaps';
 import { AddressService } from '../../services/address/address.service';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { Router } from '@angular/router';
@@ -11,14 +10,11 @@ import { Router } from '@angular/router';
 })
 export class InsertAddressComponent {
   @ViewChild('gmap') gmapElement: any;
-  map: google.maps.Map;
 
   isTracking = false;
 
   currentLat: any;
   currentLong: any;
-
-  marker: google.maps.Marker;
 
   address: string = '';
 
@@ -29,12 +25,6 @@ export class InsertAddressComponent {
   ) {}
 
   ngOnInit() {
-    var mapProp = {
-      center: new google.maps.LatLng(18.5793, 73.8143),
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
     this.findMe();
   }
 
@@ -51,25 +41,10 @@ export class InsertAddressComponent {
   showPosition(position) {
     this.currentLat = position.coords.latitude;
     this.currentLong = position.coords.longitude;
-
-    let location = new google.maps.LatLng(
-      position.coords.latitude,
-      position.coords.longitude
-    );
-    this.map.panTo(location);
-
-    if (!this.marker) {
-      this.marker = new google.maps.Marker({
-        position: location,
-        map: this.map,
-        title: 'Got you!'
-      });
-    } else {
-      this.marker.setPosition(location);
-    }
   }
 
   saveAddress() {
+    console.log(this.authenticationService.currentUser);
     this.addressService
       .CreateAddressUser(
         this.authenticationService.currentUser.id,

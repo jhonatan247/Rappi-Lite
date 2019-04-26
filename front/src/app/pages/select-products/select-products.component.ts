@@ -18,12 +18,17 @@ export class SelectProductsComponent implements OnInit {
   ) {
     this.restaurantName = this.route.snapshot.params['rname'];
     this.rid = this.route.snapshot.params['id'];
-    this.products = this.productService.getProducts(rid);
+    this.productService.getProducts(this.rid).then(products => {
+      this.products = products;
+    });
   }
 
   ngOnInit() {}
 
   goBack() {
     this.router.navigate(['restaurants']);
+  }
+  showCart() {
+    this.router.navigate(['cart']);
   }
 }

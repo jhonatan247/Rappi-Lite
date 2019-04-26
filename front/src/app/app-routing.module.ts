@@ -9,6 +9,7 @@ import { RegisterRappiComponent } from './pages/register-rappi/register-rappi.co
 import { SelectRestaurantComponent } from './pages/select-restaurant/select-restaurant.component';
 import { InsertAddressComponent } from './pages/insert-address/insert-address.component';
 import { SelectProductsComponent } from './pages/select-products/select-products.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'home-rappi', component: HomeRappiComponent },
   { path: 'restaurants', component: SelectRestaurantComponent },
   { path: 'products/:rname/:id', component: SelectProductsComponent },
-  { path: 'address', component: InsertAddressComponent }
+  { path: 'address', component: InsertAddressComponent },
+  { path: 'cart', component: CartComponent }
 ];
 
 @NgModule({

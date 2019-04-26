@@ -6,7 +6,8 @@ let save = (req, res) => {
   let value = req.body.value;
   let latitude = req.body.latitude;
   let longitude = req.body.longitude;
-  if(value && latitude && longitude && (user_id || restaurant_id) ) {
+  console.log(req.body);
+  if (value && latitude && longitude && (user_id || restaurant_id)) {
     if (user_id) {
       Address.create({
         user_id: user_id,
@@ -15,8 +16,8 @@ let save = (req, res) => {
         latitude: latitude,
         longitude: longitude
       })
-      .then((address) => res.status(201).send(address))
-      .catch((error) => res.status(400).send(error));
+        .then(address => res.status(201).send(address))
+        .catch(error => res.status(400).send(error));
     } else {
       Address.create({
         user_id: 0,
@@ -25,8 +26,8 @@ let save = (req, res) => {
         latitude: latitude,
         longitude: longitude
       })
-      .then((address) => res.status(201).send(address))
-      .catch((error) => res.status(400).send(error));
+        .then(address => res.status(201).send(address))
+        .catch(error => res.status(400).send(error));
     }
   } else {
     res.status(400).json({
@@ -34,7 +35,7 @@ let save = (req, res) => {
       message: 'Wrong Parameters'
     });
   }
-}
+};
 
 module.exports = {
   save: save

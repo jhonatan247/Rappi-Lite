@@ -20,7 +20,7 @@ export class SelectRestaurantComponent implements OnInit {
     });
   }
   showRestaurants(restaurant) {
-    this.router.navigate(['products/' + restaurant.name]);
+    this.router.navigate(['products/' + restaurant.name + '/' + restaurant.id]);
   }
   goBack() {
     this.router.navigate(['home-user']);
