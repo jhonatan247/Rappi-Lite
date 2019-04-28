@@ -1,26 +1,18 @@
 let Guard = require('../models').Guard;
 
 let authorize = (req, res, next) => {
-    Guard.checkToken(req).then((passport) => {
-        if (passport) {
-            if (passport.error) {
-                return res.status(400).send({
-                    error: passport.error
-                });
-            } else {
-                req.decoded = passport.decoded,
-                next();
-            }
+    Guard.checkToken(req)
+    .then((decoded) => {
+        if (decoded) {
+            req.decoded = decoded;
+            next();
         } else {
             return res.json({
                 success: false,
                 message: 'Auth token is not supplied'
             });
         }
-    }).catch(() => res.json({
-        success: false,
-        message: 'Unknown error'
-    }));
+    }).catch((error) => res.status(400).send({ error: error }));
 };
 
 let authenticate = (req, res) => {
@@ -44,7 +36,15 @@ let authenticate = (req, res) => {
 };
 
 let disavow = (req, res) => {
-    // React to the sign out feature of the app
+    Guard.deleteToken(req.decoded)
+    .then((status) => {
+        var message = status ? 'Token already disavowed' : 'Cannot disavow token in this moment';
+        return res.json({
+            status: status,
+            message: message,
+        });
+    })
+    .catch((error) => res.status(400).send({ error: error }));
 };
 
 module.exports = {
