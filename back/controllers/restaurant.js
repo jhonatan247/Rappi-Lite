@@ -1,4 +1,4 @@
-let Restaurant = require('../models').Restaurant;
+let Restaurant = require('../sequelize-models').Restaurant;
 
 let list = (req, res, next) => {
   return Restaurant

@@ -1,4 +1,4 @@
-const Address = require('../models').Address;
+const Address = require('../sequelize-models').Address;
 
 let save = (req, res) => {
   let user_id = req.body.user_id;

@@ -1,6 +1,6 @@
 let jwt = require('jsonwebtoken');
 const config = require('../config/config.js');
-let User = require('../models').User;
+let User = require('../sequelize-models').User;
 
 let createToken = (req, res, next) => {
   console.log(req.body);
