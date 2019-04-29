@@ -12,11 +12,17 @@ module.exports = {
         allowNull: false,
         type: Sequelize.ENUM,
         values: [
-          'admin',
-          'shopkeeper',
-          'customer',
-          'restaurant_admin'
+          'administrator',
+          'rappitendero',
+          'client'
         ],
+        validate: {
+          notEmpty: true
+        }
+      },
+      name: {
+        allowNull: false,
+        type: Sequelize.STRING,
         validate: {
           notEmpty: true
         }
@@ -28,13 +34,6 @@ module.exports = {
         validate: {
           notEmpty: true,
           not: ['[a-z]', 'i']
-        }
-      },
-      name: {
-        allowNull: false,
-        type: Sequelize.STRING,
-        validate: {
-          notEmpty: true
         }
       },
       phone: {
@@ -54,13 +53,6 @@ module.exports = {
         }
       },
       password: {
-        allowNull: false,
-        type: Sequelize.STRING,
-        validate: {
-          notEmpty: true
-        }
-      },
-      salt: {
         allowNull: false,
         type: Sequelize.STRING,
         validate: {

@@ -1,27 +1,38 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Orders', {
+    return queryInterface.createTable('Addresses', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      customer_id: {
-        type: Sequelize.INTEGER
-      },
-      shopkeeper_id: {
-        type: Sequelize.INTEGER
-      },
-      state: {
+      user_id: {
         allowNull: false,
-        type: Sequelize.ENUM,
-        values: [
-          'completed',
-          'waiting',
-          'cancelled'
-        ],
+        type: Sequelize.INTEGER
+      },
+      restaurant_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      value: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        validate: {
+          notEmpty: true
+        }
+      },
+      latitude: {
+        allowNull: false,
+        type: Sequelize.DOUBLE,
+        validate: {
+          notEmpty: true
+        }
+      },
+      longitude: {
+        allowNull: false,
+        type: Sequelize.DOUBLE,
         validate: {
           notEmpty: true
         }
@@ -37,6 +48,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Orders');
+    return queryInterface.dropTable('Addresses');
   }
 };

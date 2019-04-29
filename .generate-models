@@ -1,0 +1,15 @@
+rm migrations/*
+rm sequelize-models/!(index.js)
+# sequelize model:create --name User --attributes
+# sequelize model:create --name Customer --attributes
+# sequelize model:create --name Shopkeeper --attributes
+# sequelize model:create --name RestaurantAdmin --attributes
+# sequelize model:create --name Restaurant --attributes
+# sequelize model:create --name DailySchedule --attributes
+# sequelize model:create --name Address --attributes
+# sequelize model:create --name Product --attributes
+# sequelize model:create --name ShoppingCart --attributes
+# sequelize model:create --name Order --attributes
+# sequelize model:create --name Offer --attributes
+# sequelize model:create --name OfferShoppingCart --attributes
+# sequelize model:create --name OfferOrder --attributes

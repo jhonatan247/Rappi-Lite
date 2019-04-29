@@ -1,30 +1,37 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Orders', {
+    return queryInterface.createTable('DailySchedules', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      customer_id: {
+      restaurant_id: {
         type: Sequelize.INTEGER
       },
-      shopkeeper_id: {
-        type: Sequelize.INTEGER
-      },
-      state: {
+      type: {
         allowNull: false,
         type: Sequelize.ENUM,
         values: [
-          'completed',
-          'waiting',
-          'cancelled'
+          'sunday',
+          'monday',
+          'tuesday',
+          'wednesday',
+          'thursday',
+          'friday',
+          'saturday'
         ],
         validate: {
           notEmpty: true
         }
+      },
+      openingHour: {
+        type: Sequelize.TIME
+      },
+      closingTime: {
+        type: Sequelize.TIME
       },
       createdAt: {
         allowNull: false,
@@ -37,6 +44,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Orders');
+    return queryInterface.dropTable('SchedulePerDays');
   }
 };

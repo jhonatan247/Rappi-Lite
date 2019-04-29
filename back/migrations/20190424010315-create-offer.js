@@ -14,6 +14,12 @@ module.exports = {
       restaurant_id: {
         type: Sequelize.INTEGER
       },
+      price: {
+        type: Sequelize.DOUBLE
+      },
+      availability: {
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

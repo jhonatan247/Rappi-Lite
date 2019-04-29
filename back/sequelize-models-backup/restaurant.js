@@ -1,11 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Restaurant = sequelize.define('Restaurant', {
-    restaurant_admin_id: DataTypes.INTEGER,
     name: DataTypes.STRING,
     url_img: DataTypes.STRING
   }, {});
-  /*
   Restaurant.associate = function(models) {
     Restaurant.hasOne(models.Address, {
       foreignKey: 'restaurant_id',
@@ -23,6 +21,5 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'restaurant_id'
     });
   };
-  */
   return Restaurant;
 };

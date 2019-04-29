@@ -8,6 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      restaurant_admin_id: {
+        type: Sequelize.INTEGER
+      },
       name: {
         type: Sequelize.STRING
       },
