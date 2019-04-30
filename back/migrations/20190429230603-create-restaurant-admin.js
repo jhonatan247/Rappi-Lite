@@ -1,13 +1,10 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Shopkeepers', {
+    return queryInterface.createTable('RestaurantAdmins', {
       user_id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      active_order_id: {
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -21,6 +18,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Shopkeepers');
+    return queryInterface.dropTable('RestaurantAdmins');
   }
 };

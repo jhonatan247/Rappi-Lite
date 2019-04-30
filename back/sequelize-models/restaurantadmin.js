@@ -1,11 +1,14 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const RestaurantAdmin = sequelize.define('RestaurantAdmin', {
-    user_id: DataTypes.INTEGER,
-    restaurant_id: DataTypes.INTEGER
+    user_id: DataTypes.INTEGER
   }, {});
   RestaurantAdmin.associate = function(models) {
-    // associations can be defined here
+    RestaurantAdmin.belongsTo(models.User);
+    RestaurantAdmin.hasOne(models.Restaurant, {
+      foreignKey: 'restaurant_admin_id',
+      as: 'restaurant'
+    });
   };
   return RestaurantAdmin;
 };

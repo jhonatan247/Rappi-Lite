@@ -5,20 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     shopkeeper_id: DataTypes.INTEGER,
     state: DataTypes.ENUM('completed', 'waiting', 'cancelled')
   }, {});
-  /*
   Order.associate = function(models) {
-    Order.belongsTo(models.User);
-    Order.belongsToMany(models.Product, {
-      through: 'OrderProduct',
-      as: 'products',
-      foreignKey: 'order_id'
-    });
-    Order.belongsToMany(models.Restaurant, {
-      through: 'OrderRestaurant',
-      as: 'restaurants',
-      foreignKey: 'order_id'
-    });
+    Order.belongsTo(models.Customer);
+    Order.belongsTo(models.Shopkeeper);
+    Order.belongsToMany(Offer, {through: 'OfferOrder'});
   };
-  */
   return Order;
 };

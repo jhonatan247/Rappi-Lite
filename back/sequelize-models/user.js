@@ -9,23 +9,20 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     salt: DataTypes.STRING,
   }, {});
-  /*
   User.associate = function(models) {
     User.hasOne(models.Address, {
       foreignKey: 'user_id',
-      onDelete: 'cascade',
-      hooks: true
+      as: 'address'
     });
-    User.hasOne(models.ShoppingCar, {
-      foreignKey: 'user_id',
-      as: 'shoppingCar',
+    Shopkeeper.hasOne(models.Shopkeeper, {
+      foreignKey: 'user_id'
     });
-    User.hasMany(models.Order, {
-      foreignKey: 'user_id',
-      as: 'orders',
-      onDelete: 'cascade'
+    RestaurantAdmin.hasOne(models.RestaurantAdmin, {
+      foreignKey: 'user_id'
+    });
+    Customer.hasOne(models.Customer, {
+      foreignKey: 'user_id'
     });
   };
-  */
   return User;
 };

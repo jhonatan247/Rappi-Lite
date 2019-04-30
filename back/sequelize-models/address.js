@@ -6,10 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     latitude: DataTypes.DOUBLE,
     longitude: DataTypes.DOUBLE
   }, {});
-  /*
   Address.associate = function(models) {
     Address.belongsTo(models.User);
   };
-  */
   return Address;
 };

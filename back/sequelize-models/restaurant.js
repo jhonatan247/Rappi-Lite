@@ -5,24 +5,21 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     url_img: DataTypes.STRING
   }, {});
-  /*
   Restaurant.associate = function(models) {
-    Restaurant.hasOne(models.Address, {
-      foreignKey: 'restaurant_id',
-      onDelete: 'cascade'
-    });
+    Restaurant.belongsTo(models.RestaurantAdmin);
     Restaurant.hasMany(models.Offer, {
       foreignKey: 'restaurant_id'
     });
-    Restaurant.hasMany(models.SchedulePerDay, {
+    Restaurant.hasMany(models.DailySchedule, {
       foreignKey: 'restaurant_id'
     });
+    /*
     Restaurant.belongsToMany(models.Order, {
       through: 'OrderRestaurant',
       as: 'orders',
       foreignKey: 'restaurant_id'
     });
+    */
   };
-  */
   return Restaurant;
 };

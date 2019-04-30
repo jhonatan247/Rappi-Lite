@@ -6,10 +6,11 @@ module.exports = (sequelize, DataTypes) => {
     price: DataTypes.DOUBLE,
     availability: DataTypes.BOOLEAN
   }, {});
-  /*
   Offer.associate = function(models) {
-    // associations can be defined here
+    Offer.belongsTo(models.Restaurant);
+    Offer.belongsTo(models.Product);
+    Offer.belongsToMany(Order, {through: 'OfferOrder'});
+    Offer.belongsToMany(ShoppingCart, {through: 'OfferShoppingCart'});
   };
-  */
   return Offer;
 };
