@@ -1,19 +1,20 @@
-let Restaurant = require('../sequelize-models').Restaurant;
+let Restaurant = require('../models').Restaurant;
 
-let list = (req, res, next) => {
-  return Restaurant
-    .findAll({
-      order: [
-        ['createdAt', 'DESC'],
-        // [{ model: Address }, 'createdAt', 'DESC'],
-      ],
-    })
-    .then((restaurants) => res.status(200).send(restaurants))
-    .catch((error) => {
-      res.status(400).send(error);
+let listOfNearby = (req, res) => {
+  let address = /*req.decoded*/'the address';
+  Restaurant.listOfNearby(address)
+  .then((restaurantsList) => {
+    let success = restaurantsList ? true : false;
+    let message = restaurantsList ? 'list succesful obtained' : 'cannot get list of restaurants';
+    res.json({
+      success: success,
+      message: message,
+      list: restaurantsList 
     });
+  })
+  .catch((error) => res.status(400).send(error));
 }
 
 module.exports = {
-  list: list
+  listOfNearby: listOfNearby
 };

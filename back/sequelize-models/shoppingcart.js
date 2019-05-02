@@ -4,8 +4,15 @@ module.exports = (sequelize, DataTypes) => {
     customer_id: DataTypes.INTEGER
   }, {});
   ShoppingCart.associate = function(models) {
-    ShoppingCart.belongsTo(models.Customer);
-    ShoppingCart.belongsToMany(Offer, {through: 'OfferShoppingCart'});
+    ShoppingCart.belongsTo(models.Customer, {
+      foreignKey: 'customer_id',
+      as: 'customer'
+    });
+    ShoppingCart.belongsToMany(models.Offer, {
+      through: models.OfferShoppingCart,
+      foreignKey: 'shopping_cart_id',
+      as: 'offers'
+    });
   };
   return ShoppingCart;
 };

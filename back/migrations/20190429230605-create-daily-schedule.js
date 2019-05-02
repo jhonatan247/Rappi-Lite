@@ -11,7 +11,7 @@ module.exports = {
       restaurant_id: {
         type: Sequelize.INTEGER
       },
-      type: {
+      day: {
         allowNull: false,
         type: Sequelize.ENUM,
         values: [
@@ -27,10 +27,10 @@ module.exports = {
           notEmpty: true
         }
       },
-      openingHour: {
+      opening_hour: {
         type: Sequelize.TIME
       },
-      closingTime: {
+      closing_time: {
         type: Sequelize.TIME
       },
       createdAt: {

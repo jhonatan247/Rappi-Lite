@@ -3,12 +3,11 @@ const config = require('../config/config.js');
 let User = require('./User');
 
 let checkToken = function(req) {
-    let token = req.headers['x-access-token'] || req.headers['authorization'];
-    if (token.startsWith('Bearer ')) {
-        token = token.slice(7, token.length);
-    }
     return new Promise(function(solve, reject){
+        let token = req.headers['x-access-token'] || req.headers['authorization'];
         if (token) {
+            if (token.startsWith('Bearer '))
+                token = token.slice(7, token.length);
             jwt.verify(token, config.secret, (error, decoded) => {
                 if(error) reject(error);
                 else solve(decoded);
@@ -33,7 +32,7 @@ let createToken = function(req) {
                         id_number: user.id_number,
                         phone: user.phone,
                         email: user.email
-                    }, config.secret, { expiresIn: '120000' });
+                    }, config.secret, { expiresIn: /*'120000'*/'24h' });
                     solve({
                         token: token,
                         user_data: {

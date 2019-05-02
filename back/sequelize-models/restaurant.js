@@ -6,12 +6,17 @@ module.exports = (sequelize, DataTypes) => {
     url_img: DataTypes.STRING
   }, {});
   Restaurant.associate = function(models) {
-    Restaurant.belongsTo(models.RestaurantAdmin);
+    Restaurant.belongsTo(models.RestaurantAdmin, {
+      foreignKey: 'restaurant_admin_id',
+      as: 'admin'
+    });
     Restaurant.hasMany(models.Offer, {
-      foreignKey: 'restaurant_id'
+      foreignKey: 'restaurant_id',
+      as: 'offers'
     });
     Restaurant.hasMany(models.DailySchedule, {
-      foreignKey: 'restaurant_id'
+      foreignKey: 'restaurant_id',
+      as: 'schedules'
     });
     /*
     Restaurant.belongsToMany(models.Order, {

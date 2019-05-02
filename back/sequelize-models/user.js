@@ -14,14 +14,17 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'user_id',
       as: 'address'
     });
-    Shopkeeper.hasOne(models.Shopkeeper, {
-      foreignKey: 'user_id'
+    User.hasOne(models.Shopkeeper, {
+      foreignKey: 'user_id',
+      as: 'shopkeeper'
     });
-    RestaurantAdmin.hasOne(models.RestaurantAdmin, {
-      foreignKey: 'user_id'
+    User.hasOne(models.RestaurantAdmin, {
+      foreignKey: 'user_id',
+      as: 'restaurantAdmin'
     });
-    Customer.hasOne(models.Customer, {
-      foreignKey: 'user_id'
+    User.hasOne(models.Customer, {
+      foreignKey: 'user_id',
+      as: 'customer'
     });
   };
   return User;

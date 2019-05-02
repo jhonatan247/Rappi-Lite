@@ -7,30 +7,23 @@ app.get('/products/:id', cors(config.corsOptions), function (req, res, next) {
   res.json({msg: 'This is CORS-enabled for only example.com.'})
 });
 */
-const User = require('../sequelize-models').User;
+const User = require('../models').User;
 
 let register = (req, res) => {
-  let email = req.body.email;
-  let password = req.body.password;
-  let type = req.body.type;
-  let id_number = req.body.id_number;
-  let name = req.body.name;
-  let phone = req.body.phone;
-  if(email && password && type && id_number && name && phone) {
-    User.create({
-      type: type,
-      name: name,
-      id_number: id_number,
-      phone: phone,
-      email: email,
-      password: password
+  if(req.body.email && req.body.password && req.body.type && req.body.id_number && req.body.name && req.body.phone) {
+    User.register(req.body)
+    .then((success) => {
+      let message = success ? 'user succesful created' : 'cannot create user';
+      res.json({
+        success: success,
+        message: message
+      });
     })
-    .then((user) => res.status(201).send(user))
     .catch((error) => res.status(400).send(error));
   } else {
     res.status(400).json({
       success: false,
-      message: 'Wrong Parameters'
+      message: 'wrong Parameters'
     });
   }
 }

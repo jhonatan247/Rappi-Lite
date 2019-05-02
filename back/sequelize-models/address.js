@@ -7,7 +7,10 @@ module.exports = (sequelize, DataTypes) => {
     longitude: DataTypes.DOUBLE
   }, {});
   Address.associate = function(models) {
-    Address.belongsTo(models.User);
+    Address.belongsTo(models.User, {
+      foreignKey: 'user_id',
+      as: 'user'
+    });
   };
   return Address;
 };

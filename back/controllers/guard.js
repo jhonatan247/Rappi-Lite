@@ -24,12 +24,12 @@ let authenticate = (req, res) => {
                 message: 'Authentication successful',
                 token: passport.token,
                 user_data: passport.user_data
-            })
+            });
         } else {
             return res.json({
                 success: false,
                 massege: 'Incorrect email or password'
-            })
+            });
         }
     })
     .catch((error) => res.status(400).send({ error: error }));
