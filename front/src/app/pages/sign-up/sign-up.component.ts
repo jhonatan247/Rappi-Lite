@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Md5} from 'ts-md5/dist/md5';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,7 +15,7 @@ export class SignUpComponent implements OnInit {
   password: string = '';
   type: string;
   acceptTerms: boolean;
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, public userService: UserService) {}
 
   ngOnInit() {}
 
@@ -25,18 +24,17 @@ export class SignUpComponent implements OnInit {
   }
 
   signUp() {
-    const res = this.http.post<any>("http://localhost:3000/api/signup", {
-      type: "client",
-      name: this.name,
-      id_number: this.id_number,
-      phone: this.phone,
-      email: this.email,
-      password: Md5.hashStr(this.password)
-    }).subscribe(
-        data=>{
-          console.log(data);
-          this.router.navigate(['']);
-        },err=>console.log(err)
-      );
+    this.userService
+      .ValidateAndCreateUser(
+        'client',
+        this.name,
+        this.id_number,
+        this.phone,
+        this.email,
+        this.password
+      )
+      .then(data => {
+        this.router.navigate(['login']);
+      });
   }
 }

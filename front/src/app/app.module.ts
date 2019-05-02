@@ -24,6 +24,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { CartProductComponent } from './components/cart-product/cart-product.component';
 import { SelectCountModalComponent } from './components/select-count-modal/select-count-modal.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
+import { RestaurantService } from './services/restaurant/restaurant.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,7 @@ import { AuthenticationService } from './services/authentication/authentication.
     CommonModule,
     HttpClientModule
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, RestaurantService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

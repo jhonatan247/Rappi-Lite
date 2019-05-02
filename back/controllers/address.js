@@ -17,7 +17,7 @@ let save = (req, res) => {
       message: 'Wrong Parameters'
     });
   }
-}
+};
 
 module.exports = {
   save: save

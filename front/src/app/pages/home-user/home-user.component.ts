@@ -14,4 +14,8 @@ export class HomeUserComponent implements OnInit {
   signOut() {
     this.router.navigate(['']);
   }
+
+  showRestaurants() {
+    this.router.navigate(['restaurants']);
+  }
 }
