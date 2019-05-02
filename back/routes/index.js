@@ -1,33 +1,11 @@
-var express = require('express');
-var cors = require('cors');
+const user = require('./user');
+const address = require('./address');
+const restaurant = require('./restaurant');
+const guard = require('./guard');
 
-var config = require('../config/config.js');
-let authentication = require('../auth/authentication.js');
-let authorization = require('../auth/authorization.js');
-let user = require('../controllers/user.js');
-
-let address = require('../controllers/address.js');
-let restaurant = require('../controllers/restaurant.js');
-let product = require('../controllers/product.js');
-
-var router = express.Router();
-
-// Example using cors:
-/*
-app.get('/products/:id', cors(config.corsOptions), function (req, res, next) {
-  res.json({msg: 'This is CORS-enabled for only example.com.'})
-});
-
-
-*/
-
-// User
-router.post('/login', authentication.createToken);
-router.post('/signup', user.register);
-router.post('/signout', authorization.checkToken, authentication.deleteToken);
-
-router.post('/address', address.save);
-router.get('/restaurants', restaurant.list);
-router.post('/products', product.list);
-
-module.exports = router;
+module.exports = {
+  user,
+  guard,
+  address,
+  restaurant
+};

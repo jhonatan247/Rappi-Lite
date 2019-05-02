@@ -1,0 +1,5 @@
+sudo psql -c "DROP DATABASE rappi" postgres
+
+sudo psql -c "CREATE DATABASE rappi" postgres
+
+sequelize db:migrate
