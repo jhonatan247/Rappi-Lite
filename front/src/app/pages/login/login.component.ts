@@ -26,21 +26,21 @@ export class LoginComponent implements OnInit {
       this.authenticationService
         .validateAndLogin(this.email, this.password)
         .then(response => {
-          this.authenticationService.currentUser = response.data;
-          this.goToHome(response.data.type);
+          this.authenticationService.currentUser = response.user_data;
+          this.goToHome(response.user_data.type);
         })
-        .catch(err => alert('Invalid email or password'));
+        .catch(err => alert('email or password'));
     } catch (err) {
       alert(err);
     }
   }
 
   goToHome(userType: string) {
-    if (userType === 'client') {
+    if (userType === 'customer') {
       this.router.navigate(['address']);
-    } else if (userType === 'rappitendero') {
+    } else if (userType === 'shopkeeper') {
       this.router.navigate(['home-rappi']);
-    } else if (userType === 'administrator') {
+    } else if (userType === 'admin') {
       this.router.navigate(['home-admin']);
     }
   }

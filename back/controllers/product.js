@@ -1,4 +1,4 @@
-let Product = require('../models').Product;
+let Product = require('../sequelize-models').Product;
 
 let list = (req, res, next) => {
   return Product.findAll({

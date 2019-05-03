@@ -16,6 +16,7 @@ export class SelectRestaurantComponent implements OnInit {
 
   ngOnInit() {
     this.restaurantService.getRestaurants().then((restaurants: Array<any>) => {
+      console.log(restaurants);
       this.restaurants = restaurants;
     });
   }

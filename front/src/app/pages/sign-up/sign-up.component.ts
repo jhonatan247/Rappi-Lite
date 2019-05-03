@@ -26,7 +26,7 @@ export class SignUpComponent implements OnInit {
   signUp() {
     this.userService
       .ValidateAndCreateUser(
-        'client',
+        'customer',
         this.name,
         this.id_number,
         this.phone,

@@ -20,7 +20,7 @@ export class AddressService {
     };
     console.log(address);
     return this.http
-      .post<any>('http://localhost:3000/api/address', address)
+      .post<any>('http://localhost:3000/api/address/save', address)
       .toPromise();
   }
 }

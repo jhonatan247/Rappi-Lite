@@ -36,6 +36,7 @@ let createToken = function(req) {
                     solve({
                         token: token,
                         user_data: {
+                            id: user.id,
                             type: user.type,
                             name: user.name,
                         }

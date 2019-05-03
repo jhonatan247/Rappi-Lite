@@ -10,7 +10,7 @@ let save = (req, res) => {
         message: message
       });
     })
-    .catch((error) => res.status(400).send(error));
+    .catch((error) => {res.status(400).send(error);});
   } else {
     res.status(400).json({
       success: false,

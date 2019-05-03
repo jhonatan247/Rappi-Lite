@@ -9,7 +9,7 @@ export class RestaurantService {
 
   getRestaurants() {
     return this.http
-      .get<any>('http://localhost:3000/api/restaurants')
+      .get<any>('http://localhost:3000/api/restaurant/listOfNearby')
       .toPromise();
   }
 }

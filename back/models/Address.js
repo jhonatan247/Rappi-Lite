@@ -3,10 +3,10 @@ const Address = require('../sequelize-models').Address;
 let save = function(addressData) {
     return new Promise(function(solve, reject) {
         Address.create({
-            user_id: user_id,
-            value: value,
-            latitude: latitude,
-            longitude: longitude
+            user_id: addressData.user_id,
+            value: addressData.value,
+            latitude: addressData.latitude,
+            longitude: addressData.longitude
         })
         .then((address) => {
             if(address) {
@@ -15,7 +15,8 @@ let save = function(addressData) {
                 solve(false);
             }
         })
-        .catch((error) => { 
+        .catch((error) => {
+            console.log(error);
             reject(error); 
         });
     });
