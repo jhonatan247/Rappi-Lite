@@ -48,6 +48,7 @@ module.exports = {
       email: {
         allowNull: false,
         type: Sequelize.STRING,
+        unique: true,
         validate: {
           notEmpty: true,
           isEmail: true

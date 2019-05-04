@@ -10,21 +10,14 @@ module.exports = (sequelize, DataTypes) => {
     salt: DataTypes.STRING,
   }, {});
   User.associate = function(models) {
-    User.hasOne(models.Address, {
-      foreignKey: 'user_id',
-      as: 'address'
-    });
     User.hasOne(models.Shopkeeper, {
-      foreignKey: 'user_id',
-      as: 'shopkeeper'
+      foreignKey: 'user_id'
     });
     User.hasOne(models.RestaurantAdmin, {
-      foreignKey: 'user_id',
-      as: 'restaurantAdmin'
+      foreignKey: 'user_id'
     });
     User.hasOne(models.Customer, {
-      foreignKey: 'user_id',
-      as: 'customer'
+      foreignKey: 'user_id'
     });
   };
   return User;

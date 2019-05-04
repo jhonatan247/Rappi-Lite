@@ -4,21 +4,19 @@ let save = function(addressData) {
     return new Promise(function(solve, reject) {
         Address.create({
             user_id: addressData.user_id,
+            restaurant_id: addressData.restaurant_id,
             value: addressData.value,
-            latitude: addressData.latitude,
-            longitude: addressData.longitude
-        })
-        .then((address) => {
-            if(address) {
-                solve(true);
-            } else {
-                solve(false);
+            position: {
+                type: 'Point',
+                coordinates: [addressData.longitude, addressData.latitude],
+                crs: { type: 'name', properties: { name: 'ESPG:4326' } }
             }
         })
-        .catch((error) => {
-            console.log(error);
-            reject(error); 
-        });
+        .then((address) => {
+            if(address) solve();
+            else reject(Error("can't create address"));
+        })
+        .catch((error) => reject(error));
     });
 };
 

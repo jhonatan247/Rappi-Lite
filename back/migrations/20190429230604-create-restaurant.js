@@ -11,6 +11,10 @@ module.exports = {
       restaurant_admin_id: {
         type: Sequelize.INTEGER
       },
+      address_id: {
+        type: Sequelize.INTEGER,
+        unique: true
+      },
       name: {
         type: Sequelize.STRING
       },

@@ -13,7 +13,7 @@ let checkToken = function(req) {
                 else solve(decoded);
             });
         } else {
-            solve(false);
+            reject(Error("Auth token was not supplied"));
         }
     });
 };
@@ -42,19 +42,19 @@ let createToken = function(req) {
                         }
                     });
                 } else {
-                    solve(false);
+                    reject(Error("Wrong password"));
                 }
             })
-            .catch((error) => {reject(error)});
+            .catch((error) => reject(error));
         } else {
-            solve(false);
+            reject(Error("There is no user or email"));
         } 
     });
 }
 
 let deleteToken = function(req) {
     return new Promise(function(solve, reject){
-        solve(false);
+        solve();
     });
 }
 

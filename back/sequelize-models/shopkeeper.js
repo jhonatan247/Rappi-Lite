@@ -4,7 +4,9 @@ module.exports = (sequelize, DataTypes) => {
     user_id: {
       type: DataTypes.INTEGER,
       primaryKey: true
-    }
+    },
+    latitude: DataTypes.DOUBLE,
+    longitude: DataTypes.DOUBLE,
   }, {});
   Shopkeeper.associate = function(models) {
     Shopkeeper.belongsTo(models.User, {

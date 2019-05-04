@@ -8,8 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_id: {
-        allowNull: false,
+      customer_id: {
         type: Sequelize.INTEGER
       },
       value: {
@@ -19,16 +18,9 @@ module.exports = {
           notEmpty: true
         }
       },
-      latitude: {
+      position: {
         allowNull: false,
-        type: Sequelize.DOUBLE,
-        validate: {
-          notEmpty: true
-        }
-      },
-      longitude: {
-        allowNull: false,
-        type: Sequelize.DOUBLE,
+        type: Sequelize.GEOMETRY('POINT', 4326),
         validate: {
           notEmpty: true
         }

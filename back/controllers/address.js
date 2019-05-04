@@ -3,14 +3,13 @@ const Address = require('../models').Address;
 let save = (req, res) => {
   if(req.body.value && req.body.latitude && req.body.longitude && req.body.user_id) {
     Address.save(req.body)
-    .then((success) => {
-      let message = success ? 'address succesful created' : 'cannot create address';
+    .then(() =>
       res.json({
-        success: success,
-        message: message
-      });
-    })
-    .catch((error) => {res.status(400).send(error);});
+        success: true,
+        message: 'Address succesful created'
+      })
+    )
+    .catch((error) => res.status(400).send(error));
   } else {
     res.status(400).json({
       success: false,
