@@ -3,11 +3,11 @@ import { RestaurantService } from '../../services/restaurant/restaurant.service'
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-select-restaurant',
-  templateUrl: './select-restaurant.component.html',
-  styleUrls: ['./select-restaurant.component.sass']
+  selector: 'app-restaurant-list',
+  templateUrl: './restaurant-list.component.html',
+  styleUrls: ['./restaurant-list.component.sass']
 })
-export class SelectRestaurantComponent implements OnInit {
+export class RestaurantListComponent implements OnInit {
   restaurants: Array<any> = [];
   constructor(
     private restaurantService: RestaurantService,

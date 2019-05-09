@@ -18,8 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductComponent } from './components/product/product.component';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
 import { InsertAddressComponent } from './pages/insert-address/insert-address.component';
-import { SelectRestaurantComponent } from './pages/select-restaurant/select-restaurant.component';
-import { SelectProductsComponent } from './pages/select-products/select-products.component';
+import { RestaurantListComponent } from './pages/restaurant-list/restaurant-list.component';
+import { ProductListComponent } from './pages/product-list/product-list.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CartProductComponent } from './components/cart-product/cart-product.component';
 import { SelectCountModalComponent } from './components/select-count-modal/select-count-modal.component';
@@ -40,8 +40,8 @@ import { RestaurantService } from './services/restaurant/restaurant.service';
     ProductComponent,
     RestaurantComponent,
     InsertAddressComponent,
-    SelectRestaurantComponent,
-    SelectProductsComponent,
+    RestaurantListComponent,
+    ProductListComponent,
     CartComponent,
     CartProductComponent,
     SelectCountModalComponent

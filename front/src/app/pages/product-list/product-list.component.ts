@@ -3,11 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../services/product/product.service';
 
 @Component({
-  selector: 'app-select-products',
-  templateUrl: './select-products.component.html',
-  styleUrls: ['./select-products.component.sass']
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.sass']
 })
-export class SelectProductsComponent implements OnInit {
+export class ProductListComponent implements OnInit {
   restaurantName: string;
   products: Array<any>;
   rid: any;
