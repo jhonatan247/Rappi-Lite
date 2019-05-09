@@ -6,9 +6,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterRappiComponent } from './pages/register-rappi/register-rappi.component';
-import { SelectRestaurantComponent } from './pages/select-restaurant/select-restaurant.component';
+import { RestaurantListComponent } from './pages/restaurant-list/restaurant-list.component';
 import { InsertAddressComponent } from './pages/insert-address/insert-address.component';
-import { SelectProductsComponent } from './pages/select-products/select-products.component';
+import { ProductListComponent } from './pages/product-list/product-list.component';
 import { CartComponent } from './pages/cart/cart.component';
 
 const routes: Routes = [
@@ -19,8 +19,8 @@ const routes: Routes = [
   { path: 'home-user', component: HomeUserComponent },
   { path: 'home-admin', component: HomeAdminComponent },
   { path: 'home-rappi', component: HomeRappiComponent },
-  { path: 'restaurants', component: SelectRestaurantComponent },
-  { path: 'products/:rname/:id', component: SelectProductsComponent },
+  { path: 'restaurants', component: RestaurantListComponent },
+  { path: 'products/:rname/:id', component: ProductListComponent },
   { path: 'address', component: InsertAddressComponent },
   { path: 'cart', component: CartComponent }
 ];
