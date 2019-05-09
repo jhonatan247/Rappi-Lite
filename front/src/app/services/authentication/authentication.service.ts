@@ -13,7 +13,7 @@ export class AuthenticationService {
   validateAndLogin(userEmail: string, password: string): Promise<any> {
     if (this.validateCredentials(userEmail, password)) {
       return this.http
-        .post<any>('http://localhost:3000/api/login', {
+        .post<any>('http://localhost:3000/api/guard/login', {
           email: userEmail,
           password: Md5.hashStr(password)
         })

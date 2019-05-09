@@ -2,20 +2,19 @@ const User = require('../sequelize-models').User;
 
 let findByEmail = function(email) {
     return new Promise(function(solve, reject) {
-        User.findAll({ where: { email: email } })
-        .then((users) => {
-            if(users[0]) solve(users[0].dataValues);
-            else reject(false);
+        User.findOne({ where: { email: email } })
+        .then((user) => {
+            console.log(user.dataValues + '\ntrying to login into the app');
+            if(user) solve(user.dataValues);
+            else reject(Error("there is no user with email: " + email));
         })
-        .catch((error) => { 
-            reject(error); 
-        });
+        .catch((error) => reject(error));
     });
 };
 
 let register = function(userData) {
     return new Promise(function(solve, reject) {
-        let salt = '#{MATH.floor((Math.random() * 10) + 1)}salt';
+        let salt = Math.floor((Math.random() * 10) + 1) + 'salt';
         console.log('salt: ' + salt);
         User.create({
             email: userData.email,
@@ -27,15 +26,11 @@ let register = function(userData) {
             salt: salt
         })
         .then((user) => {
-            if(user) {
-                solve(true);
-            } else {
-                solve(false);
-            }
+            console.log('trying to create a user: ' + user);
+            if(user) solve();
+            else reject(Error("can't create user"));
         })
-        .catch((error) => { 
-            reject(error); 
-        });
+        .catch((error) => reject(error));
     });
 };
   

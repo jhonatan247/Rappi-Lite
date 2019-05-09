@@ -1,15 +1,17 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Address = sequelize.define('Address', {
-    user_id: DataTypes.INTEGER,
+    customer_id: DataTypes.INTEGER,
     value: DataTypes.STRING,
     latitude: DataTypes.DOUBLE,
     longitude: DataTypes.DOUBLE
   }, {});
   Address.associate = function(models) {
-    Address.belongsTo(models.User, {
-      foreignKey: 'user_id',
-      as: 'user'
+    Address.belongsTo(models.Customer, {
+      foreignKey: 'customer_id'
+    });
+    User.hasOne(models.Restaurant, {
+      foreignKey: 'address_id'
     });
   };
   return Address;

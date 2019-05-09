@@ -12,13 +12,12 @@ const User = require('../models').User;
 let register = (req, res) => {
   if(req.body.email && req.body.password && req.body.type && req.body.id_number && req.body.name && req.body.phone) {
     User.register(req.body)
-    .then((success) => {
-      let message = success ? 'user succesful created' : 'cannot create user';
+    .then(() =>
       res.json({
-        success: success,
-        message: message
-      });
-    })
+        success: true,
+        message: 'user succesful created'
+      })
+    )
     .catch((error) => res.status(400).send(error));
   } else {
     res.status(400).json({

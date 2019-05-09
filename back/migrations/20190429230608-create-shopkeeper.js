@@ -7,6 +7,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      position: {
+        allowNull: false,
+        type: Sequelize.GEOMETRY('POINT', 4326),
+        validate: {
+          notEmpty: true
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

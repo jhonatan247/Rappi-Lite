@@ -24,7 +24,7 @@ export class UserService {
       password: Md5.hashStr(uPassword)
     };
     return this.http
-      .post<any>('http://localhost:3000/api/signup', user)
+      .post<any>('http://localhost:3000/api/user/signup', user)
       .toPromise();
   }
 }
