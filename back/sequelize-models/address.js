@@ -1,12 +1,12 @@
-'use strict';
+const Sequelize = require('sequelize');
+('use strict');
 module.exports = (sequelize, DataTypes) => {
   const Address = sequelize.define(
     'Address',
     {
       customer_id: DataTypes.INTEGER,
       value: DataTypes.STRING,
-      latitude: DataTypes.DOUBLE,
-      longitude: DataTypes.DOUBLE
+      position: Sequelize.GEOMETRY('POINT', 4326)
     },
     {}
   );
