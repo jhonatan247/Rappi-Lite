@@ -14,4 +14,8 @@ export class HomeRappiComponent implements OnInit {
   signOut() {
     this.router.navigate(['']);
   }
+
+  showOrders() {
+    this.router.navigate(['orders']);
+  }
 }
