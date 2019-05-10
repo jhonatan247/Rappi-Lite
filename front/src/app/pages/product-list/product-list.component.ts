@@ -18,9 +18,14 @@ export class ProductListComponent implements OnInit {
   ) {
     this.restaurantName = this.route.snapshot.params['rname'];
     this.rid = this.route.snapshot.params['id'];
-    this.productService.getProducts(this.rid).then(products => {
-      this.products = products;
-    });
+    this.productService
+      .getProducts(this.rid)
+      .then(products => {
+        this.products = products;
+      })
+      .catch(error => {
+        alert('An error has ocurred: ' + error);
+      });
   }
 
   ngOnInit() {}

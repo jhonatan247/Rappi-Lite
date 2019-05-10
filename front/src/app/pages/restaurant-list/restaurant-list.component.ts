@@ -15,10 +15,14 @@ export class RestaurantListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.restaurantService.getRestaurants().then((restaurants: Array<any>) => {
-      console.log(restaurants);
-      this.restaurants = restaurants;
-    });
+    this.restaurantService
+      .getRestaurants()
+      .then((restaurants: Array<any>) => {
+        this.restaurants = restaurants;
+      })
+      .catch(error => {
+        alert('An error has ocurred: ' + error);
+      });
   }
   showRestaurants(restaurant) {
     this.router.navigate(['products/' + restaurant.name + '/' + restaurant.id]);
