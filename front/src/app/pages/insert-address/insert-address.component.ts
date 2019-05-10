@@ -54,6 +54,9 @@ export class InsertAddressComponent {
       )
       .then(data => {
         this.router.navigate(['home-user']);
+      })
+      .catch(error => {
+        alert('An error has ocurred: ' + error);
       });
   }
 }

@@ -33,10 +33,9 @@ export class RegisterRappiComponent implements OnInit {
       })
       .subscribe(
         data => {
-          console.log(data);
           this.router.navigate(['home-admin']);
         },
-        err => console.log(err)
+        error => alert('An error has ocurred: ' + error)
       );
   }
 

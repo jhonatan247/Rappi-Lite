@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
           this.authenticationService.currentUser = response.user_data;
           this.goToHome(response.user_data.type);
         })
-        .catch(err => alert('email or password'));
+        .catch(err => alert('Incorrect email or password'));
     } catch (err) {
       alert(err);
     }
