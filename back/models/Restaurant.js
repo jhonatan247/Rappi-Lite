@@ -1,3 +1,4 @@
+let Sequelize = require('sequelize');
 let Restaurant = require('../sequelize-models').Restaurant;
 let ShoppingCart = require('../sequelize-models').ShoppingCart;
 let Address = require('../sequelize-models').Address;
@@ -6,23 +7,39 @@ let listOfNearby = function(latitude, longitude) {
   return new Promise(function(solve, reject) {
     if ((latitude, longitude)) {
       Restaurant.findAll({
+        include: [
+          {
+            model: Address,
+            as: 'address'
+          }
+        ],
         where: Sequelize.where(
           Sequelize.fn(
             'ST_DWithin',
-            Sequelize.col('position'),
+            Sequelize.col('address.position'),
             Sequelize.fn(
               'ST_SetSRID',
               Sequelize.fn('ST_MakePoint', longitude, latitude),
               4326
             ),
-            0.032
+            60
           ),
           true
-        )
-        //order: Sequelize.literal('distance ASC')
+        ),
+        order: [
+          [Sequelize.fn(
+            'ST_Distance',
+            Sequelize.col('address.position'),
+            Sequelize.fn(
+              'ST_SetSRID',
+              Sequelize.fn('ST_MakePoint', longitude, latitude),
+              4326
+            ),
+          ), 'ASC']
+        ]
       })
-        .then(restaurants => solve(restaurants))
-        .catch(error => reject(error));
+      .then(restaurants => solve(restaurants))
+      .catch(error => reject(error));
     } else {
       reject(Error('There is no position'));
     }

@@ -11,16 +11,9 @@ module.exports = {
       restaurant_admin_id: {
         type: Sequelize.INTEGER
       },
-      address: {
-        type: Sequelize.STRING,
+      address_id: {
+        type: Sequelize.INTEGER,
         unique: true
-      },
-      position: {
-        allowNull: false,
-        type: Sequelize.GEOMETRY('POINT', 4326),
-        validate: {
-          notEmpty: true
-        }
       },
       name: {
         type: Sequelize.STRING
