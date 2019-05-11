@@ -17,11 +17,7 @@ let listOfNearby = function(latitude, longitude) {
           Sequelize.fn(
             'ST_DWithin',
             Sequelize.col('address.position'),
-            Sequelize.fn(
-              'ST_SetSRID',
-              Sequelize.fn('ST_MakePoint', longitude, latitude),
-              4326
-            ),
+            Sequelize.fn('ST_SetSRID', Sequelize.fn('ST_MakePoint', longitude, latitude), 4326),
             60
           ),
           true
@@ -31,9 +27,7 @@ let listOfNearby = function(latitude, longitude) {
             Sequelize.fn(
               'ST_Distance',
               Sequelize.col('address.position'),
-              Sequelize.fn(
-                'ST_SetSRID',
-                Sequelize.fn('ST_MakePoint', longitude, latitude), 4326),
+              Sequelize.fn('ST_SetSRID', Sequelize.fn('ST_MakePoint', longitude, latitude), 4326),
             ), 
             'ASC'
           ]
