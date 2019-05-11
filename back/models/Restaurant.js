@@ -4,14 +4,14 @@ let Address = require('../sequelize-models').Address;
 /*
 let functionName = function(params) {
     return new Promise(function(solve, reject) {
-        
+
     });
 };
 */
 
 let listOfNearby = function(latitude, longitude) {
   return new Promise(function(solve, reject) {
-    if ((latitude, longitude)) {
+    if (latitude && longitude) {
       Restaurant.findAll({
         where: Sequelize.where(
           Sequelize.fn(
@@ -31,7 +31,7 @@ let listOfNearby = function(latitude, longitude) {
         .then(restaurants => solve(restaurants))
         .catch(error => reject(error));
     } else {
-      reject(Error('There is no position'));
+      reject(Error('There is not a position'));
     }
   });
 };
