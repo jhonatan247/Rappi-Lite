@@ -1,11 +1,11 @@
-let Sequelize = require('sequelize');
 let Restaurant = require('../sequelize-models').Restaurant;
 let ShoppingCart = require('../sequelize-models').ShoppingCart;
 let Address = require('../sequelize-models').Address;
+let Sequelize = require('sequelize');
 
 let listOfNearby = function(latitude, longitude) {
   return new Promise(function(solve, reject) {
-    if ((latitude, longitude)) {
+    if (latitude && longitude) {
       Restaurant.findAll({
         include: [
           {
@@ -27,21 +27,22 @@ let listOfNearby = function(latitude, longitude) {
           true
         ),
         order: [
-          [Sequelize.fn(
-            'ST_Distance',
-            Sequelize.col('address.position'),
+          [
             Sequelize.fn(
-              'ST_SetSRID',
-              Sequelize.fn('ST_MakePoint', longitude, latitude),
-              4326
-            ),
-          ), 'ASC']
+              'ST_Distance',
+              Sequelize.col('address.position'),
+              Sequelize.fn(
+                'ST_SetSRID',
+                Sequelize.fn('ST_MakePoint', longitude, latitude), 4326),
+            ), 
+            'ASC'
+          ]
         ]
       })
       .then(restaurants => solve(restaurants))
       .catch(error => reject(error));
     } else {
-      reject(Error('There is no position'));
+      reject(Error('There is not a position'));
     }
   });
 };
