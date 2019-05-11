@@ -10,7 +10,9 @@ export class ProductService {
 
   getProducts(rid) {
     return this.http
-      .post<any>('http://localhost:3000/api/restaurants/productsList', { restaurant_id: rid })
+      .post<any>('http://localhost:3000/api/restaurants/listOfNearby', {
+        restaurant_id: rid
+      })
       .toPromise();
   }
 }

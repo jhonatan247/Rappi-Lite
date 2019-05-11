@@ -25,6 +25,8 @@ import { CartProductComponent } from './components/cart-product/cart-product.com
 import { SelectCountModalComponent } from './components/select-count-modal/select-count-modal.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
 import { RestaurantService } from './services/restaurant/restaurant.service';
+import { OrderListComponent } from './pages/order-list/order-list.component';
+import { CurrentOrderComponent } from './pages/current-order/current-order.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { RestaurantService } from './services/restaurant/restaurant.service';
     ProductListComponent,
     CartComponent,
     CartProductComponent,
-    SelectCountModalComponent
+    SelectCountModalComponent,
+    OrderListComponent,
+    CurrentOrderComponent
   ],
   imports: [
     BrowserModule,
