@@ -1,13 +1,6 @@
 let Restaurant = require('../sequelize-models').Restaurant;
 let ShoppingCart = require('../sequelize-models').ShoppingCart;
 let Address = require('../sequelize-models').Address;
-/*
-let functionName = function(params) {
-    return new Promise(function(solve, reject) {
-        
-    });
-};
-*/
 
 let listOfNearby = function(address) {
     return new Promise(function(solve, reject) {

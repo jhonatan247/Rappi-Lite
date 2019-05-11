@@ -3,7 +3,7 @@ const guard = require('../controllers').guard;
 
 var router = require('express').Router();
 
-router.get('/listOfNearby', guard.authorize, restaurant.listOfNearby);
-router.post('/productsList', guard.authorize, restaurant.productsList);
+router.get('/listOfNearby', restaurant.listOfNearby);
+router.get('/productsList', restaurant.productsList);
 
 module.exports = router;

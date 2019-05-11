@@ -1,7 +1,7 @@
 let Restaurant = require('../models').Restaurant;
 
 let listOfNearby = (req, res) => {
-  let address = req.decoded.id;
+  let address = req.body;
   Restaurant.listOfNearby(address)
   .then((restaurantsList) =>
     res.json({

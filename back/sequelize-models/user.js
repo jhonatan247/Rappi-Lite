@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
     phone: DataTypes.INTEGER,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    salt: DataTypes.STRING,
   }, {});
   User.associate = function(models) {
     User.hasOne(models.Shopkeeper, {

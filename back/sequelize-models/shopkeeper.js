@@ -1,12 +1,13 @@
-'use strict';
+const Sequelize = require('sequelize');
+
+('use strict');
 module.exports = (sequelize, DataTypes) => {
   const Shopkeeper = sequelize.define('Shopkeeper', {
     user_id: {
       type: DataTypes.INTEGER,
       primaryKey: true
     },
-    latitude: DataTypes.DOUBLE,
-    longitude: DataTypes.DOUBLE,
+    position: Sequelize.GEOMETRY('POINT', 4326),
   }, {});
   Shopkeeper.associate = function(models) {
     Shopkeeper.belongsTo(models.User, {

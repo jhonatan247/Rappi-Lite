@@ -61,13 +61,6 @@ module.exports = {
           notEmpty: true
         }
       },
-      salt: {
-        allowNull: false,
-        type: Sequelize.STRING,
-        validate: {
-          notEmpty: true
-        }
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

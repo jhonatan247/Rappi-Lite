@@ -11,11 +11,11 @@ let save = function(addressData) {
         crs: { type: 'name', properties: { name: 'EPSG:4326' } }
       }
     })
-      .then(address => {
-        if (address) solve();
-        else reject(Error("can't create address"));
-      })
-      .catch(error => reject(error));
+    .then(address => {
+      if (address) solve();
+      else reject(Error("can't create address"));
+    })
+    .catch(error => reject(error));
   });
 };
 
