@@ -34,7 +34,10 @@ let listOfNearby = function(latitude, longitude) {
         ]
       })
       .then(restaurants => solve(restaurants))
-      .catch(error => reject(error));
+      .catch(error => {
+        console.log('error loading join');
+        reject(error);
+      });
     } else {
       reject(Error('There is not a position'));
     }

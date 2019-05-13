@@ -54,7 +54,14 @@ module.exports = {
           isEmail: true
         }
       },
-      password: {
+      hash: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        validate: {
+          notEmpty: true
+        }
+      },
+      salt: {
         allowNull: false,
         type: Sequelize.STRING,
         validate: {

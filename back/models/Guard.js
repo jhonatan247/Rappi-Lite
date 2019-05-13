@@ -1,6 +1,22 @@
 let jwt = require('jsonwebtoken');
+let crypto = require('crypto');
 const config = require('../config/config.js');
 let User = require('./User');
+
+var generateRandomString = function(length) {
+    return crypto.randomBytes(Math.ceil(length/2))
+    .toString('hex')
+    .slice(0,length);
+};
+
+let generateCredentials = function(password) {
+    let salt = generateRandomString(16);
+    let hash = crypto.createHash('SHA256').update(password + salt).digest('hex');
+    return {
+        hash: hash,
+        salt: salt
+    }
+}
 
 let checkToken = function(req) {
     return new Promise(function(solve, reject){
@@ -25,7 +41,8 @@ let createToken = function(req) {
         if (email && password) {
             User.findByEmail(email)
             .then((user) => {
-                if (password === user.password) {
+                let hash = crypto.createHash('SHA256').update(password + user.salt).digest('hex');
+                if (hash === user.hash) {
                     let token = jwt.sign({
                         type: user.type,
                         name: user.name,
@@ -59,6 +76,7 @@ let deleteToken = function(req) {
 }
 
 module.exports = {
+    generateCredentials: generateCredentials,
     checkToken: checkToken,
     createToken: createToken,
     deleteToken: deleteToken

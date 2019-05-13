@@ -1,4 +1,5 @@
 const User = require('../sequelize-models').User;
+let Guard = require('./Guard');
 
 let findByEmail = function(email) {
     return new Promise(function(solve, reject) {
@@ -13,20 +14,19 @@ let findByEmail = function(email) {
 };
 
 let register = function(userData) {
+    console.log('working here');
     return new Promise(function(solve, reject) {
-        let salt = Math.floor((Math.random() * 10) + 1) + 'salt';
-        console.log('salt: ' + salt);
+        let credentials = Guard.generateCredentials(userData.password);
         User.create({
             email: userData.email,
-            password: userData.password,
+            hash: credentials.hash,
             type: userData.type,
             id_number: userData.id_number,
             name: userData.name,
             phone: userData.phone,
-            salt: salt
+            salt: credentials.salt
         })
         .then((user) => {
-            console.log('trying to create a user: ' + user);
             if(user) solve();
             else reject(Error("can't create user"));
         })
