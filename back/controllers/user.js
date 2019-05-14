@@ -8,16 +8,16 @@ app.get('/products/:id', cors(config.corsOptions), function (req, res, next) {
 */
 const User = require('../models').User;
 
-let register = (req, res) => {
+module.exports.register = (req, res) => {
   if(req.body.email && req.body.password && req.body.type && req.body.id_number && req.body.name && req.body.phone) {
     User.register(req.body)
-    .then(() =>
+    .then(() => {
       res.json({
         success: true,
         message: 'user succesful created'
-      })
-    )
-    .catch((error) => res.status(400).send(error));
+      });
+    })
+    .catch(error => {console.log('da error:  ' + error);res.status(400).send(error)});
   } else {
     res.status(400).json({
       success: false,
@@ -25,7 +25,3 @@ let register = (req, res) => {
     });
   }
 }
-
-module.exports = {
-  register: register
-};
