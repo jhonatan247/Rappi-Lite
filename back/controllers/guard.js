@@ -1,15 +1,16 @@
 let Guard = require('../models').Guard;
 
-let authorize = (req, res, next) => {
+module.exports.authorize = (req, res, next) => {
     Guard.checkToken(req)
     .then((decoded) => {
         req.decoded = decoded;
         next();
-    }).catch((error) => res.status(400).send({ error: error }));
-};
+    })
+    .catch((error) => res.status(500).json({message: error.message}));
+}
 
-let authenticate = (req, res) => {
-    Guard.createToken(req)
+module.exports.authenticate = (req, res) => {
+    Guard.createToken(req.body)
     .then((passport) => 
         res.json({
             success: true,
@@ -18,10 +19,10 @@ let authenticate = (req, res) => {
             user_data: passport.user_data
         })
     )
-    .catch((error) => res.status(400).send({ error: error }));
-};
+    .catch((error) => res.status(500).json({message: error.message}));
+}
 
-let disavow = (req, res) => {
+module.exports.disavow = (req, res) => {
     Guard.deleteToken(req.decoded)
     .then(() => 
         res.json({
@@ -29,11 +30,5 @@ let disavow = (req, res) => {
             message: 'Token already disavowed'
         })
     )
-    .catch((error) => res.status(400).send({ error: error }));
-};
-
-module.exports = {
-    authorize: authorize,
-    authenticate: authenticate,
-    disavow: disavow 
+    .catch((error) => res.status(500).json({message: error.message}));
 }

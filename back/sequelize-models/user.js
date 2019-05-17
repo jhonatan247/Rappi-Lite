@@ -7,7 +7,9 @@ module.exports = (sequelize, DataTypes) => {
     phone: DataTypes.INTEGER,
     email: DataTypes.STRING,
     hash: DataTypes.STRING,
-    salt: DataTypes.STRING
+    salt: DataTypes.STRING,
+    token: DataTypes.STRING(1000),
+    connected: DataTypes.BOOLEAN
   }, {});
   User.associate = function(models) {
     User.hasOne(models.Shopkeeper, {

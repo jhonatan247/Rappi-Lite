@@ -68,6 +68,15 @@ module.exports = {
           notEmpty: true
         }
       },
+      token: {
+        allowNull: true,
+        unique: true,
+        type: Sequelize.STRING(1000),
+      },
+      connected: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

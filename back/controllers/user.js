@@ -17,7 +17,7 @@ module.exports.register = (req, res) => {
         message: 'user succesful created'
       });
     })
-    .catch(error => {console.log('da error:  ' + error);res.status(400).send(error)});
+    .catch(error => res.status(500).json({message: error.message}));
   } else {
     res.status(400).json({
       success: false,

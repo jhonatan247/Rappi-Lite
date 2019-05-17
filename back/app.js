@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/user', indexRouter.user);
 app.use('/api/guard', indexRouter.guard);
-app.use('/api/address', indexRouter.address);
+app.use('/api/customer', indexRouter.customer);
 app.use('/api/restaurant', indexRouter.restaurant);
 
 module.exports = app;

@@ -1,23 +1,18 @@
 const User = require('../sequelize-models').User;
+let Address = require('../sequelize-models').Address;
 let sequelize = require('../sequelize-models').sequelize;
 let Guard = require('./Guard');
 let Customer = require('./Customer');
 let Shopkeeper = require('./Shopkeeper');
 let RestaurantAdmin = require('./RestaurantAdmin');
 
-module.exports.findByEmail = function(email) {
-    return new Promise(function(solve, reject) {
-        User.findOne({ where: { email: email } })
-        .then((user) => {
-            console.log(user.dataValues + '\ntrying to login into the app');
-            if(user) solve(user.dataValues);
-            else reject(Error("there is no user with email: " + email));
-        })
-        .catch((error) => reject(error));
+module.exports.findByEmail = async function(email) {
+    return await User.findOne({
+        where: { email: email } 
     });
 };
 
-let create = async function(userData, t) {
+let create = function(userData, t) {
     let credentials = Guard.generateCredentials(userData.password);
     return User.create({
         email: userData.email,
@@ -26,7 +21,8 @@ let create = async function(userData, t) {
         id_number: userData.id_number,
         name: userData.name,
         phone: userData.phone,
-        salt: credentials.salt
+        salt: credentials.salt,
+        connected: false
     }, {transaction: t});
 }
 

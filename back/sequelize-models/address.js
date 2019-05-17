@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     Address.hasOne(models.Restaurant, {
       foreignKey: 'address_id'
     });
+    Address.hasOne(models.Customer, {
+      foreignKey: 'actual_address_id',
+    });
   };
   return Address;
 };
