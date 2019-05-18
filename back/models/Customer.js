@@ -62,3 +62,11 @@ module.exports.getActualAddress = async function(user_id) {
     });
     return customer.actualAddress;
 }
+
+module.exports.selectActualAddress = async function(user_id, address_id) {
+    return await Customer.update({actual_address_id: address_id}, {where: {user_id: user_id}});
+}
+
+module.exports.addToShoppingCart = function(offer_id, user_id) {
+
+}

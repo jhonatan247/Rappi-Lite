@@ -52,7 +52,6 @@ module.exports.createToken = async function(userData) {
                 phone: user.phone,
                 email: user.email
             }, config.secret, { expiresIn: /*'120000'*/'24h' });
-            console.log(token);
             await user.update({token: token, connected: true});
             return {
                 token: token,
@@ -62,7 +61,7 @@ module.exports.createToken = async function(userData) {
                 }
             }
         } else {
-            throw Error("Wrong password");
+            throw Error("Wrong password or email");
         }
     } else {
         throw Error("There is no user or email");

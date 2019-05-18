@@ -43,3 +43,13 @@ module.exports.personalInfoById = (req, res) => {
   )
   .catch(error => res.status(500).json({message: error.message}));
 }
+
+module.exports.selectAddress = (req, res) => {
+  Customer.selectActualAddress(req.decoded.id, req.body.address_id)
+  .then(() =>
+    res.json({
+      success: true,
+    })
+  )
+  .catch(error => res.status(500).json({message: error.message}));
+}

@@ -1,5 +1,4 @@
 const User = require('../sequelize-models').User;
-let Address = require('../sequelize-models').Address;
 let sequelize = require('../sequelize-models').sequelize;
 let Guard = require('./Guard');
 let Customer = require('./Customer');
@@ -10,7 +9,7 @@ module.exports.findByEmail = async function(email) {
     return await User.findOne({
         where: { email: email } 
     });
-};
+}
 
 let create = function(userData, t) {
     let credentials = Guard.generateCredentials(userData.password);
@@ -36,6 +35,6 @@ module.exports.register = function(userData) {
     } else {
         return sequelize.transaction(t => create(userData, t));
     }
-};
+}
 
 module.exports.create = create;

@@ -11,9 +11,6 @@ module.exports = (sequelize, DataTypes) => {
     Address.belongsTo(models.Customer, {
       foreignKey: 'customer_id'
     });
-    Address.hasOne(models.Restaurant, {
-      foreignKey: 'address_id'
-    });
     Address.hasOne(models.Customer, {
       foreignKey: 'actual_address_id',
     });
