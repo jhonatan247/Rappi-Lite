@@ -1,3 +1,5 @@
+# Linux
+
 sudo -s psql -c "DROP DATABASE rappi" postgres
 
 sudo -s psql -c "CREATE DATABASE rappi" postgres
@@ -9,3 +11,11 @@ sudo -u postgres psql -c "CREATE EXTENSION POSTGIS" rappi
 sequelize db:migrate
 
 sudo -s psql -c "\i ../.seed-database" rappi
+
+# Windows
+
+psql -c "DROP DATABASE rappi" postgres root
+
+psql -c "CREATE DATABASE rappi" postgres root
+
+psql -c "CREATE EXTENSION POSTGIS" rappi postgres
