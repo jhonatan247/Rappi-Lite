@@ -7,6 +7,7 @@ import { Md5 } from 'ts-md5/dist/md5';
 })
 export class AuthenticationService {
   currentUser: any;
+  token: any;
 
   constructor(private http: HttpClient) {}
 

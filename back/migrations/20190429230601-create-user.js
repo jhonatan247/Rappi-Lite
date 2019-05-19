@@ -54,7 +54,7 @@ module.exports = {
           isEmail: true
         }
       },
-      password: {
+      hash: {
         allowNull: false,
         type: Sequelize.STRING,
         validate: {
@@ -67,6 +67,15 @@ module.exports = {
         validate: {
           notEmpty: true
         }
+      },
+      token: {
+        allowNull: true,
+        unique: true,
+        type: Sequelize.STRING(1000),
+      },
+      connected: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
       },
       createdAt: {
         allowNull: false,
