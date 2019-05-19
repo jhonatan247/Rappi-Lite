@@ -19,3 +19,7 @@ psql -c "DROP DATABASE rappi" postgres root
 psql -c "CREATE DATABASE rappi" postgres root
 
 psql -c "CREATE EXTENSION POSTGIS" rappi postgres
+
+sequelize db:migrate
+
+psql -c "\i .seed-database" rappi root
