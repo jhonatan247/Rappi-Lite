@@ -15,8 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       email: DataTypes.STRING,
       hash: DataTypes.STRING,
       salt: DataTypes.STRING,
-      token: DataTypes.STRING(1000),
-      connected: DataTypes.BOOLEAN
+      token: DataTypes.STRING(1000)
     },
     {}
   );
