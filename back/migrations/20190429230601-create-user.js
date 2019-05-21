@@ -11,12 +11,7 @@ module.exports = {
       type: {
         allowNull: false,
         type: Sequelize.ENUM,
-        values: [
-          'admin',
-          'shopkeeper',
-          'customer',
-          'restaurant_admin'
-        ],
+        values: ['admin', 'shopkeeper', 'customer', 'restaurant_admin'],
         validate: {
           notEmpty: true
         }
@@ -71,11 +66,11 @@ module.exports = {
       token: {
         allowNull: true,
         unique: true,
-        type: Sequelize.STRING(1000),
+        type: Sequelize.STRING(1000)
       },
       connected: {
         allowNull: false,
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,

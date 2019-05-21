@@ -6,7 +6,7 @@ let Sequelize = require('sequelize');
 
 module.exports.listOfNearby = async function(user_id) {
   let address = await Customer.getActualAddress(user_id);
-  if (address) {    
+  if (address) {
     return await Restaurant.findAll({
       /* Limit the range of valid addresses
       where: Sequelize.where(
@@ -22,9 +22,25 @@ module.exports.listOfNearby = async function(user_id) {
         [
           Sequelize.fn(
             'ST_Distance',
-            Sequelize.fn('ST_SetSRID', Sequelize.fn('ST_MakePoint', Sequelize.col('position').coordinates[0], Sequelize.col('position').coordinates[1]), 4326),
-            Sequelize.fn('ST_SetSRID', Sequelize.fn('ST_MakePoint', address.position.coordinates[0], address.position.coordinates[1]), 4326)
-          ), 
+            Sequelize.fn(
+              'ST_SetSRID',
+              Sequelize.fn(
+                'ST_MakePoint',
+                Sequelize.col('position').coordinates[0],
+                Sequelize.col('position').coordinates[1]
+              ),
+              4326
+            ),
+            Sequelize.fn(
+              'ST_SetSRID',
+              Sequelize.fn(
+                'ST_MakePoint',
+                address.position.coordinates[0],
+                address.position.coordinates[1]
+              ),
+              4326
+            )
+          ),
           'ASC'
         ]
       ]
@@ -32,9 +48,9 @@ module.exports.listOfNearby = async function(user_id) {
   } else {
     throw Error('There is no address or user');
   }
-}
+};
 
-module.exports.productsList = /*async*/function(restaurant_id) {
+module.exports.productsList = /*async*/ function(restaurant_id) {
   return new Promise(function(solve, reject) {
     if (restaurant_id) {
       Product.findAll({
@@ -49,13 +65,18 @@ module.exports.productsList = /*async*/function(restaurant_id) {
       reject(Error('There is no restaurant_id'));
     }
   });
-}
+};
 
 module.exports.saveAddress = function(addressData, restaurant_id) {
-  return sequelize.transaction(t => Address.save(addressData, t)
-  .then((address) => Restaurant.update({address_id: address.id}, {where: {id: restaurant_id}}))
+  return sequelize.transaction(t =>
+    Address.save(addressData, t).then(address =>
+      Restaurant.update(
+        { address_id: address.id },
+        { where: { id: restaurant_id } }
+      )
+    )
   );
-}
+};
 
 module.exports.isOpen = async function(restaurant_id) {
   let restaurant = await Restaurant.findOne({
@@ -65,7 +86,10 @@ module.exports.isOpen = async function(restaurant_id) {
         as: 'schedules',
         where: Sequelize.where(
           Sequelize.cast(Sequelize.col('day'), 'TEXT'),
-          Sequelize.fn('TRIM', Sequelize.fn('TO_CHAR', Sequelize.fn('CURRENT_DATE'), 'day'))
+          Sequelize.fn(
+            'TRIM',
+            Sequelize.fn('TO_CHAR', Sequelize.fn('CURRENT_DATE'), 'day')
+          )
         )
       }
     ],
@@ -84,4 +108,4 @@ module.exports.isOpen = async function(restaurant_id) {
     }
   });
   return restaurant ? true : false;
-}
+};
