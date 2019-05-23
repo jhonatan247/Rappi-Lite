@@ -17,8 +17,8 @@ export class RestaurantListComponent implements OnInit {
   ngOnInit() {
     this.restaurantService
       .getRestaurants()
-      .then((restaurants: Array<any>) => {
-        this.restaurants = restaurants;
+      .then(restaurants => {
+        this.restaurants = restaurants.list;
       })
       .catch(error => {
         alert('An error has ocurred: ' + error);
