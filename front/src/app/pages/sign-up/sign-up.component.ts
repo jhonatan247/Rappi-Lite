@@ -1,7 +1,7 @@
+import { ConfigurationService } from './../../services/configuration/configuration.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Md5} from 'ts-md5/dist/md5';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,33 +10,43 @@ import {Md5} from 'ts-md5/dist/md5';
 })
 export class SignUpComponent implements OnInit {
   name: string;
-  id_number: number;
+  idNumber: number;
   email: string;
   phone: number;
-  password: string = '';
+  password: '';
   type: string;
   acceptTerms: boolean;
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    private router: Router,
+    public userService: UserService,
+    private configurationService: ConfigurationService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.configurationService.currentUser) {
+      this.goToLogin();
+    }
+  }
 
-  login() {
+  goToLogin() {
     this.router.navigate(['']);
   }
 
   signUp() {
-    const res = this.http.post<any>("http://localhost:3000/api/signup", {
-      type: "client",
-      name: this.name,
-      id_number: this.id_number,
-      phone: this.phone,
-      email: this.email,
-      password: Md5.hashStr(this.password)
-    }).subscribe(
-        data=>{
-          console.log(data);
-          this.router.navigate(['']);
-        },err=>console.log(err)
-      );
+    this.userService
+      .ValidateAndCreateUser(
+        'customer',
+        this.name,
+        this.idNumber,
+        this.phone,
+        this.email,
+        this.password
+      )
+      .then(data => {
+        this.router.navigate(['login']);
+      })
+      .catch(error => {
+        alert('An error has ocurred: ' + error.toString());
+      });
   }
 }

@@ -1,7 +1,9 @@
+import { ConfigurationService } from './../../services/configuration/configuration.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Md5} from 'ts-md5/dist/md5';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { RestaurantService } from '../../services/restaurant/restaurant.service';
 
 @Component({
   selector: 'app-login',
@@ -10,37 +12,46 @@ import {Md5} from 'ts-md5/dist/md5';
 })
 export class LoginComponent implements OnInit {
   email: string;
-  password: string = '';
+  password: string;
   remember: boolean;
-  options: any;
-  constructor(private router: Router, private http: HttpClient) {
-    this.options = {
-      headers: this.getHeaders(),
-      observe: 'response',
-      responseType: 'blob'
-    };
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private configurationService: ConfigurationService
+  ) {
+    this.password = '';
   }
-  getHeaders(){
-    const headers = new HttpHeaders();
-    // headers.set('Content-Type', "application/json");
-    headers.set('Content-Type', "multipart/form-data");
-    headers.set('Authorization', 'my-token');
-    return headers;
+  ngOnInit() {
+    if (this.configurationService.currentUser) {
+      this.goToHome(this.configurationService.currentUser.type);
+    }
   }
-  ngOnInit() {}
 
-  login() {
-    const res = this.http.post<any>("http://localhost:3000/api/login", {email:this.email, password: Md5.hashStr(this.password)}).subscribe(
-    response=>{
-      if(response.data.type == "client"){
-        this.router.navigate(['home-user']);
-      } else if(response.data.type == "rappitendero"){
-        this.router.navigate(['home-rappi']);
-      } else if(response.data.type == "administrator"){
-        this.router.navigate(['home-admin']);
-      }
-    },err=>console.log(err)
-    );
+  validateAndLogin() {
+    try {
+      this.authenticationService
+        .validateAndLogin(this.email, this.password)
+        .then(response => {
+          this.configurationService.setUserData(
+            response.user_data,
+            response.token
+          );
+          this.goToHome(response.user_data.type);
+        })
+        .catch(err => alert('Incorrect email or password'));
+    } catch (err) {
+      alert(err);
+    }
+  }
+
+  goToHome(userType: string) {
+    if (userType === 'customer') {
+      this.router.navigate(['address']);
+    } else if (userType === 'shopkeeper') {
+      this.router.navigate(['home-rappi']);
+    } else if (userType === 'admin') {
+      this.router.navigate(['home-admin']);
+    }
   }
 
   signUp() {

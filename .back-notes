@@ -1,0 +1,17 @@
+2019 - 05 - 17 
+
+SELECT * FROM "DailySchedules" WHERE day::TEXT = TRIM(TO_CHAR(CURRENT_DATE, 'day'));
+
+SELECT DATE_TRUNC('minute', LOCALTIME);
+
+- Getting the restaurants list is not verifying the schedule of each restaurant.
+- Getting the products of a restaurant is not completed, it must use a view or something like that.
+- Getting the products list is not verifying the schedule of the restaurant.
+- Saving a product on the shopping cart must verify the schedule of the restaurant.
+- Saving a product on the shopping cart must verify that all the products belong to the same restaurant.
+- Make checkout and verify the restaurant schedule, create an order and put it in waiting state.
+- Make a queue on an async proccess that look for the waiting orders and assign them for a shopkeeper that is connected and available.
+- when the order is assigned the state change to assigned and the shopkeeper change his state to bussy.
+- when the shopkeeper is near to the customer address, he can complete the order, then the pay take effect.
+- complete the order change the state of the order to completed and the state of the shopkeeperto avilable.
+- when a shopkeeper go disconnected, and an order is assigned, the order go again on waiting state.
