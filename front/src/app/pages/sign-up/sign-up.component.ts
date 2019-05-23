@@ -46,7 +46,7 @@ export class SignUpComponent implements OnInit {
         this.router.navigate(['login']);
       })
       .catch(error => {
-        alert('An error has ocurred: ' + error);
+        alert('An error has ocurred: ' + error.toString());
       });
   }
 }

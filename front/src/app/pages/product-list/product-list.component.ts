@@ -24,7 +24,7 @@ export class ProductListComponent implements OnInit {
         this.products = products.list;
       })
       .catch(error => {
-        alert('An error has ocurred: ' + error);
+        alert('An error has ocurred: ' + error.toString());
       });
   }
 

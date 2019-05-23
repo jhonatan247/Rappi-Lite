@@ -33,14 +33,18 @@ export class AuthenticationService {
     return true;
   }
 
-  loginWithToken(token: string) {
-    this.configurationService.token = token;
+  signOut() {
     return this.http
       .post<any>(
-        'http://localhost:3000/api/guard/login-withoken',
+        'http://localhost:3000/api/guard/sign-out',
         {},
         this.configurationService.getOptionsWithAuthorization()
       )
-      .toPromise();
+      .toPromise()
+      .then(signOuthData => {
+        this.configurationService.token = null;
+        this.configurationService.currentUser = null;
+        return signOuthData;
+      });
   }
 }

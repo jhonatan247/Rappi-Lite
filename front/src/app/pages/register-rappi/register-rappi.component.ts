@@ -35,7 +35,7 @@ export class RegisterRappiComponent implements OnInit {
         data => {
           this.router.navigate(['home-admin']);
         },
-        error => alert('An error has ocurred: ' + error)
+        error => alert('An error has ocurred: ' + error.toString())
       );
   }
 

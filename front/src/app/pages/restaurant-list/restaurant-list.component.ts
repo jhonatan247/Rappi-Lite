@@ -21,7 +21,7 @@ export class RestaurantListComponent implements OnInit {
         this.restaurants = restaurants.list;
       })
       .catch(error => {
-        alert('An error has ocurred: ' + error);
+        alert('An error has ocurred: ' + error.toString());
       });
   }
   showRestaurants(restaurant) {
