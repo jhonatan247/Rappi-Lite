@@ -1,8 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const ShoppingCart = sequelize.define('ShoppingCart', {
-    customer_id: DataTypes.INTEGER
-  }, {});
+  const ShoppingCart = sequelize.define(
+    'ShoppingCart',
+    {
+      customer_id: DataTypes.INTEGER
+    },
+    {}
+  );
   ShoppingCart.associate = function(models) {
     ShoppingCart.belongsTo(models.Customer, {
       foreignKey: 'customer_id',

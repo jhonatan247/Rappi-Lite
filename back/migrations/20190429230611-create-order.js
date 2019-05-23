@@ -17,11 +17,7 @@ module.exports = {
       state: {
         allowNull: false,
         type: Sequelize.ENUM,
-        values: [
-          'completed',
-          'waiting',
-          'cancelled'
-        ],
+        values: ['completed', 'waiting', 'cancelled'],
         validate: {
           notEmpty: true
         }

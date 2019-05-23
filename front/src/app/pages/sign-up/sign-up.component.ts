@@ -1,3 +1,4 @@
+import { ConfigurationService } from './../../services/configuration/configuration.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user/user.service';
@@ -9,17 +10,25 @@ import { UserService } from '../../services/user/user.service';
 })
 export class SignUpComponent implements OnInit {
   name: string;
-  id_number: number;
+  idNumber: number;
   email: string;
   phone: number;
-  password: string = '';
+  password: '';
   type: string;
   acceptTerms: boolean;
-  constructor(private router: Router, public userService: UserService) {}
+  constructor(
+    private router: Router,
+    public userService: UserService,
+    private configurationService: ConfigurationService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.configurationService.currentUser) {
+      this.goToLogin();
+    }
+  }
 
-  login() {
+  goToLogin() {
     this.router.navigate(['']);
   }
 
@@ -28,7 +37,7 @@ export class SignUpComponent implements OnInit {
       .ValidateAndCreateUser(
         'customer',
         this.name,
-        this.id_number,
+        this.idNumber,
         this.phone,
         this.email,
         this.password
