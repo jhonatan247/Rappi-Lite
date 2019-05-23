@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../services/authentication/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -7,12 +8,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./home-admin.component.sass']
 })
 export class HomeAdminComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService
+  ) {}
 
   ngOnInit() {}
 
   signOut() {
-    this.router.navigate(['']);
+    this.authenticationService
+      .signOut()
+      .then(() => {
+        this.router.navigate(['']);
+      })
+      .catch(error => alert('An error has ocurred: ' + error.toString()));
   }
 
   register() {
