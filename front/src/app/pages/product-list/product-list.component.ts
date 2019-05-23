@@ -10,16 +10,16 @@ import { ProductService } from '../../services/product/product.service';
 export class ProductListComponent implements OnInit {
   restaurantName: string;
   products: Array<any>;
-  rid: any;
+  restaurantId: any;
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private router: Router
   ) {
     this.restaurantName = this.route.snapshot.params.rname;
-    this.rid = this.route.snapshot.params.id;
+    this.restaurantId = this.route.snapshot.params.id;
     this.productService
-      .getProducts(this.rid)
+      .getProducts(this.restaurantId)
       .then(products => {
         this.products = products.list;
       })
@@ -34,6 +34,6 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['restaurants']);
   }
   showCart() {
-    this.router.navigate(['cart']);
+    this.router.navigate([`cart/${this.restaurantName}/${this.restaurantId}`]);
   }
 }

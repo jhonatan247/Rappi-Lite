@@ -25,7 +25,7 @@ export class RestaurantListComponent implements OnInit {
       });
   }
   showRestaurants(restaurant) {
-    this.router.navigate(['products/' + restaurant.name + '/' + restaurant.id]);
+    this.router.navigate([`products/${restaurant.name}/${restaurant.id}`]);
   }
   goBack() {
     this.router.navigate(['home-user']);
