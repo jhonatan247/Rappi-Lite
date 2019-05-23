@@ -23,3 +23,25 @@ psql -c "CREATE EXTENSION POSTGIS" rappi root
 sequelize db:migrate
 
 psql -c "\i .seed-database" rappi root
+
+# MacOS
+
+psql -c "DROP DATABASE rappi" postgres
+
+psql -c "CREATE DATABASE rappi" postgres
+
+# Before run the next command, you must install POSTGIS
+
+psql -c "CREATE EXTENSION POSTGIS" rappi
+
+sequelize db:migrate
+
+psql -c "\i ../.seed-database" rappi
+
+# Install dependencies:
+
+npm install -g nodemon
+npm install -g sequelize-cli
+npm install -g pg
+npm install -g pg-hstore
+npm install -g @angular/cli

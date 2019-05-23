@@ -34,6 +34,6 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['restaurants']);
   }
   showCart() {
-    this.router.navigate(['cart']);
+    this.router.navigate([`cart/${this.restaurantName}/${this.restaurantId}`]);
   }
 }

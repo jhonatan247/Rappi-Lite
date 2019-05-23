@@ -7,8 +7,9 @@ import { CartService } from '../../services/cart/cart.service';
   styleUrls: ['./product.component.sass']
 })
 export class ProductComponent implements OnInit {
-  @Input('product') product: any;
   count: number;
+
+  @Input('product') product: any;
 
   constructor(public cartService: CartService) {
     this.count = 1;
@@ -17,12 +18,21 @@ export class ProductComponent implements OnInit {
   ngOnInit() {}
 
   add() {
-    this.cartService.addProduct({
-      name: this.product.name,
-      description: this.product.description,
-      price: this.product.price,
-      url_img: this.product.utl_img,
-      count: this.count
-    });
+    const quiantity = prompt('Please enter the quantity', 'quantity');
+    if (quiantity) {
+      try {
+        this.cartService.addProduct({
+          name: this.product.name,
+          description: this.product.description,
+          price: this.product.price,
+          url_img: this.product.url_img,
+          count: parseInt(quiantity, 10)
+        });
+      } catch (error) {
+        alert('An error has ocurred: ' + error);
+      }
+    } else {
+      alert('You have to insert a number');
+    }
   }
 }

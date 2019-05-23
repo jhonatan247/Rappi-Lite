@@ -75,6 +75,7 @@ module.exports.productsList = function(restaurant_id) {
             console.log(offer);
             const product = offer.product;
             product.dataValues.price = offer.dataValues.price;
+            product.dataValues.restaurant_id = offer.dataValues.restaurant_id;
             products.push(product);
           });
           solve(products);
