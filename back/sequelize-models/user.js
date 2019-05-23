@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
       email: DataTypes.STRING,
       hash: DataTypes.STRING,
       salt: DataTypes.STRING,
-      token: DataTypes.STRING(1000)
+      token: DataTypes.STRING(1000),
+      last_interaction_date: DataTypes.DATE
     },
     {}
   );

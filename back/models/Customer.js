@@ -15,6 +15,7 @@ module.exports.create = function(userData) {
 
 module.exports.saveAddress = function(addressData, user_id) {
   addressData.user_id = user_id;
+  console.log(addressData);
   return sequelize.transaction(t =>
     Address.save(addressData, t).then(address =>
       Customer.update(

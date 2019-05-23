@@ -68,6 +68,10 @@ module.exports = {
         unique: true,
         type: Sequelize.STRING(1000)
       },
+      last_interaction_date: {
+        allowNull: true,
+        type: Sequelize.DATE
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

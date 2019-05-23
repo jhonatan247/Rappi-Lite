@@ -23,13 +23,23 @@ module.exports.generateCredentials = function(password) {
   };
 };
 
+let diferenceBetweenDatesInMinutes = function(date1, date2) {
+  return Math.round((date2 - date1) / (1000 * 3600));
+};
+
 module.exports.checkToken = async function(req) {
   let token = req.headers['x-access-token'] || req.headers['authorization'];
   if (token) {
     if (token.startsWith('Bearer ')) token = token.slice(7, token.length);
     let decoded = jwt.verify(token, config.secret);
     let user = await User.findByEmail(decoded.email);
-    if (user && user.connected && user.token == token) {
+    if (
+      user &&
+      user.token == token &&
+      diferenceBetweenDatesInMinutes(user.last_interaction_date, Date.now()) <
+        600
+    ) {
+      await user.update({ last_interaction_date: Date.now() });
       return user.dataValues;
     } else {
       throw Error('Token unauthorized');
@@ -56,18 +66,21 @@ module.exports.createToken = async function(userData) {
           name: user.name,
           id_number: user.id_number,
           phone: user.phone,
-          email: user.email,
-          lastInteractionDate: Date.now()
+          email: user.email
         },
         config.secret,
         { expiresIn: '24h' }
       );
-      await user.update({ token: token });
+      await user.update({ token: token, last_interaction_date: Date.now() });
       return {
         token: token,
         user_data: {
+          id: user.id,
           type: user.type,
-          name: user.name
+          name: user.name,
+          id_number: user.id_number,
+          phone: user.phone,
+          email: user.email
         }
       };
     } else {

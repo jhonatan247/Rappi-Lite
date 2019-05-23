@@ -21,7 +21,8 @@ let create = function(userData, t) {
       id_number: userData.id_number,
       name: userData.name,
       phone: userData.phone,
-      salt: credentials.salt
+      salt: credentials.salt,
+      last_interaction_date: Date.now()
     },
     { transaction: t }
   );
