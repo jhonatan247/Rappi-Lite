@@ -25,4 +25,7 @@ module.exports.addOrders = function(offers, customer_id) {
             return Promise.all(promises);
         });
     });
-};
+}
+
+module.exports.getOrders = async function(shopkeeper_id) {
+}

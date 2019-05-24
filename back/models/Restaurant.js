@@ -99,6 +99,31 @@ module.exports.saveAddress = function(addressData, restaurant_id) {
 };
 
 module.exports.isOpen = async function(restaurant_id) {
+  /*
+  DailySchedule.findAndCountAll({
+    where: {
+      [Sequelize.Op.and]: [
+        Sequelize.where(
+          Sequelize.cast(Sequelize.col('day'), 'TEXT'),
+          Sequelize.fn('TRIM', Sequelize.fn('TO_CHAR', Sequelize.literal('CURRENT_DATE'), 'day'))
+        ),
+        Sequelize.where(
+          Sequelize.col('opening_hour'),
+          '>=',
+          Sequelize.fn('DATE_TRUNC', 'minute', Sequelize.literal('LOCALTIME'))          
+        ),
+        Sequelize.where(
+          Sequelize.col('closing_time'),
+          '<=',
+          Sequelize.fn('DATE_TRUNC', 'minute', Sequelize.literal('LOCALTIME'))
+        ),
+        {
+          restaurant_id: restaurant_id
+        }
+      ]
+    }
+  });
+  */
   let restaurant = await Restaurant.findOne({
     include: [
       {
