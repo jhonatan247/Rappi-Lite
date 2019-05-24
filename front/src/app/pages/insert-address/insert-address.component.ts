@@ -48,7 +48,7 @@ export class InsertAddressComponent implements OnInit {
         this.router.navigate(['home-user']);
       })
       .catch(error => {
-        alert('An error has ocurred: ' + error);
+        alert('An error has ocurred: ' + error.toString());
       });
   }
 }
