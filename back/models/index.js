@@ -5,6 +5,7 @@ const Guard = require('./Guard');
 const Customer = require('./Customer');
 const RestaurantAdmin = require('./RestaurantAdmin');
 const Shopkeeper = require('./Shopkeeper');
+const OrdersSource = require('./OrdersSource');
 
 module.exports = {
   User,
@@ -13,5 +14,6 @@ module.exports = {
   Guard,
   Customer,
   RestaurantAdmin,
-  Shopkeeper
+  Shopkeeper,
+  OrdersSource
 };
