@@ -16,7 +16,10 @@
       <div class="col-md-12">
         <div class="text-center">
           <h3>
-            <div #gmap style="width:100%;height:300px"></div>
+            <agm-map [latitude]="currentLat" [longitude]="currentLong"
+              [zoom]="15">
+              <agm-marker [latitude]="currentLat" [longitude]="currentLong"></agm-marker>
+            </agm-map>
           </h3>
         </div>
       </div>
@@ -30,7 +33,7 @@
         aria-describedby="address"
         placeholder="Enter address"
         [(ngModel)]="address"
-      />
+        />
     </div>
 
     <div class="row">
@@ -39,8 +42,7 @@
           type="button"
           class="btn btn-lg"
           style="background:#FF656B; color:white;"
-          (click)="saveAddress()"
-        >
+          (click)="saveAddress()">
           Save
         </button>
       </div>

@@ -1,15 +1,16 @@
+import { ConfigurationService } from './../configuration/configuration.service';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Md5 } from 'ts-md5/dist/md5';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  currentUser: any;
-  token: any;
-
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private configurationService: ConfigurationService
+  ) {}
 
   validateAndLogin(userEmail: string, password: string): Promise<any> {
     if (this.validateCredentials(userEmail, password)) {
@@ -30,5 +31,20 @@ export class AuthenticationService {
       throw new Error('Invalid password');
     }
     return true;
+  }
+
+  signOut() {
+    return this.http
+      .post<any>(
+        'http://localhost:3000/api/guard/sign-out',
+        {},
+        this.configurationService.getOptionsWithAuthorization()
+      )
+      .toPromise()
+      .then(signOuthData => {
+        this.configurationService.token = null;
+        this.configurationService.currentUser = null;
+        return signOuthData;
+      });
   }
 }

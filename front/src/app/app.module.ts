@@ -1,4 +1,7 @@
+import { AdminAuthenticationGuard } from './guards/admin-authentication/admin-authentication.guard';
+import { ConfigurationService } from './services/configuration/configuration.service';
 import { BrowserModule } from '@angular/platform-browser';
+import { APP_INITIALIZER } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -27,6 +30,7 @@ import { AuthenticationService } from './services/authentication/authentication.
 import { RestaurantService } from './services/restaurant/restaurant.service';
 import { OrderListComponent } from './pages/order-list/order-list.component';
 import { CurrentOrderComponent } from './pages/current-order/current-order.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -56,9 +60,27 @@ import { CurrentOrderComponent } from './pages/current-order/current-order.compo
     FormsModule,
     HttpModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAqdnxyqWIaS3te-A489QfcJP_HIGoLbPQ'
+    })
   ],
-  providers: [AuthenticationService, RestaurantService],
+  providers: [
+    ConfigurationService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: configFactory,
+      deps: [ConfigurationService],
+      multi: true
+    },
+    AuthenticationService,
+    RestaurantService,
+    AdminAuthenticationGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
+export function configFactory(config: ConfigurationService) {
+  return () => config.load();
+}

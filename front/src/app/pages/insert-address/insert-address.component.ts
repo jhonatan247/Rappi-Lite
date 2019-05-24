@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { AddressService } from '../../services/address/address.service';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { Router } from '@angular/router';
@@ -8,15 +8,13 @@ import { Router } from '@angular/router';
   templateUrl: './insert-address.component.html',
   styleUrls: ['./insert-address.component.sass']
 })
-export class InsertAddressComponent {
-  @ViewChild('gmap') gmapElement: any;
-
+export class InsertAddressComponent implements OnInit {
   isTracking = false;
 
-  currentLat: any;
-  currentLong: any;
+  currentLat = 0;
+  currentLong = 0;
 
-  address: string = '';
+  address = '';
 
   constructor(
     public addressService: AddressService,
@@ -44,19 +42,13 @@ export class InsertAddressComponent {
   }
 
   saveAddress() {
-    console.log(this.authenticationService.currentUser);
     this.addressService
-      .CreateAddressUser(
-        this.authenticationService.currentUser.id,
-        this.address,
-        this.currentLat,
-        this.currentLong
-      )
+      .CreateAddressUser(this.address, this.currentLat, this.currentLong)
       .then(data => {
         this.router.navigate(['home-user']);
       })
       .catch(error => {
-        alert('An error has ocurred: ' + error);
+        alert('An error has ocurred: ' + error.toString());
       });
   }
 }

@@ -22,8 +22,7 @@ module.exports.productsList = (req, res) => {
 
 
 module.exports.isOpen = (req, res) => {
-  console.log("params: " + req.params.restaurant_id);
-  Restaurant.isOpen(req.params.restaurant_id)
+  Restaurant.isOpen(req.query.restaurant_id)
   .then(val => res.status(200).send({isOpen: val}))
   .catch(error => res.status(500).json({message: error.message}));
 }
