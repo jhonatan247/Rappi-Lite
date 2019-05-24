@@ -58,6 +58,7 @@ module.exports.saveAddress = function(addressData, restaurant_id) {
 }
 
 module.exports.isOpen = async function(restaurant_id) {
+  console.log("Debug " + restaurant_id);
   let restaurant = await Restaurant.findOne({
     include: [
       {

@@ -5,5 +5,6 @@ var router = require('express').Router();
 
 router.get('/list-of-nearby', guard.authorize, restaurant.listOfNearby);
 router.get('/products-list', guard.authorize, restaurant.productsList);
+router.get('/open', restaurant.isOpen);
 
 module.exports = router;

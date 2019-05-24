@@ -19,3 +19,11 @@ module.exports.productsList = (req, res) => {
     .then(restaurants => res.status(200).send(restaurants))
     .catch(error => res.status(500).json({message: error.message}));
 }
+
+
+module.exports.isOpen = (req, res) => {
+  console.log("params: " + req.params.restaurant_id);
+  Restaurant.isOpen(req.params.restaurant_id)
+  .then(val => res.status(200).send({isOpen: val}))
+  .catch(error => res.status(500).json({message: error.message}));
+}
