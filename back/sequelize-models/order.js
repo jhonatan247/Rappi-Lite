@@ -5,7 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     {
       customer_id: DataTypes.INTEGER,
       shopkeeper_id: DataTypes.INTEGER,
-      state: DataTypes.ENUM('completed', 'waiting', 'cancelled')
+      restaurant_id: DataTypes.INTEGER,
+      total: DataTypes.DOUBLE,
+      state: DataTypes.ENUM('creating', 'waiting', 'assigned', 'completed','cancelled')
     },
     {}
   );
@@ -18,8 +20,12 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'shopkeeper_id',
       as: 'shopkeeper'
     });
+    Order.belongsTo(models.Restaurant, {
+      foreignKey: 'restaurant_id',
+      as: 'restaurant'
+    });
     Order.belongsToMany(models.Offer, {
-      through: models.OfferOrder,
+      through: models.OrderDetail,
       foreignKey: 'order_id',
       as: 'offers'
     });

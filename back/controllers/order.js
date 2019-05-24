@@ -1,7 +1,7 @@
-let OrdersSource = require('../models').OrdersSource;
+let OrdersRepository = require('../models').OrdersRepository;
 
 module.exports.createOrders = (req, res) => {
-    OrdersSource.addOrders(req.body.offers, req.decoded.id)
+    OrdersRepository.addOrders(req.body.offers, req.decoded.id)
     .then((order) => {
         res.json({
             success: true,

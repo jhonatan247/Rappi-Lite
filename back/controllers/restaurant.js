@@ -1,8 +1,9 @@
 let Restaurant = require('../models').Restaurant;
+let RestaurantsRepository = require('../models').RestaurantsRepository;
 
 module.exports.listOfNearby = (req, res) => {
   let customer_id = req.decoded.id;
-  Restaurant.listOfNearby(customer_id)
+  RestaurantsRepository.listOfNearby(customer_id)
     .then(restaurantsList =>
       res.json({
         success: true,

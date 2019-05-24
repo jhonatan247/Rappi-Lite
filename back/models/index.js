@@ -1,19 +1,23 @@
-const User = require('./User');
-const Address = require('./Address');
+const UsersRepository = require('./UsersRepository');
+const AddressesRepository = require('./AddressesRepository');
 const Restaurant = require('./Restaurant');
+const RestaurantsRepository = require('./RestaurantsRepository');
 const Guard = require('./Guard');
 const Customer = require('./Customer');
-const RestaurantAdmin = require('./RestaurantAdmin');
-const Shopkeeper = require('./Shopkeeper');
-const OrdersSource = require('./OrdersSource');
+const CustomersRepository = require('./CustomersRepository');
+const RestaurantAdminsRepository = require('./RestaurantAdminsRepository');
+const ShopkeepersRepository = require('./ShopkeepersRepository');
+const OrdersRepository = require('./OrdersRepository');
 
 module.exports = {
-  User,
-  Address,
+  UsersRepository,
+  AddressesRepository,
   Restaurant,
+  RestaurantsRepository,
   Guard,
   Customer,
-  RestaurantAdmin,
-  Shopkeeper,
-  OrdersSource
+  CustomersRepository,
+  RestaurantAdminsRepository,
+  ShopkeepersRepository,  
+  OrdersRepository
 };

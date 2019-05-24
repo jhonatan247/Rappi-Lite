@@ -6,7 +6,7 @@ app.get('/products/:id', cors(config.corsOptions), function (req, res, next) {
   res.json({msg: 'This is CORS-enabled for only example.com.'})
 });
 */
-const User = require('../models').User;
+const UsersRepository = require('../models').UsersRepository;
 
 module.exports.register = (req, res) => {
   if (
@@ -17,7 +17,7 @@ module.exports.register = (req, res) => {
     req.body.name &&
     req.body.phone
   ) {
-    User.register(req.body)
+    UsersRepository.register(req.body)
       .then(() => {
         res.json({
           success: true,

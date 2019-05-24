@@ -1,6 +1,6 @@
 const Address = require('../sequelize-models').Address;
 
-module.exports.save = function(addressData, t) {
+module.exports.create = function(addressData, t) {
   return Address.create(
     {
       customer_id: addressData.user_id,

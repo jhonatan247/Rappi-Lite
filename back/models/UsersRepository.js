@@ -1,9 +1,9 @@
 const User = require('../sequelize-models').User;
 let sequelize = require('../sequelize-models').sequelize;
 let Guard = require('./Guard');
-let Customer = require('./Customer');
-let Shopkeeper = require('./Shopkeeper');
-let RestaurantAdmin = require('./RestaurantAdmin');
+let Customer = require('./CustomersRepository');
+let Shopkeeper = require('./ShopkeepersRepository');
+let RestaurantAdmin = require('./RestaurantAdminsRepository');
 
 module.exports.findByEmail = async function(email) {
   return await User.findOne({

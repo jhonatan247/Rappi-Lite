@@ -1,7 +1,7 @@
 let jwt = require('jsonwebtoken');
 let crypto = require('crypto');
 const config = require('../config/config.js');
-let User = require('./User');
+let User = require('./UsersRepository');
 let Customer = require('./').Customer;
 
 let generateRandomString = function(length) {

@@ -1,3 +1,5 @@
-const User = require('../sequelize-models').User;
+const ShoppingCart = require('../sequelize-models').ShoppingCart;
 
-module.exports.addOffer = function(cart_id, offer_id) {};
+module.exports.addOffer = function(customer_id, offer_id) {
+
+};
