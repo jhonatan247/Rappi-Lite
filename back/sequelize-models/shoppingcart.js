@@ -6,7 +6,9 @@ module.exports = (sequelize, DataTypes) => {
       customer_id: {
         type: DataTypes.INTEGER,
         primaryKey: true
-      }
+      },
+      restaurant: DataTypes.INTEGER,
+      total: DataTypes.DOUBLE,
     },
     {}
   );

@@ -1,19 +1,22 @@
 const Order = require('../sequelize-models').Order;
-const OfferOrder = require('../sequelize-models').OfferOrder;
+const OrderDetail = require('../sequelize-models').OrderDetail;
 let sequelize = require('../sequelize-models').sequelize;
 
-module.exports.addOrders = function(offers, customer_id) {
+module.exports.addOrders = function(offers, customer_id, restaurant_id, total) {
     return sequelize.transaction(t => {
         return Order.create({
                 customer_id: customer_id,
-                state: 'creating',
+                state: 'waiting',
+                restaurant_id: restaurant_id,
+                total: total
         }, { transaction: t })
         .then((order) => {
             var promises = [];
             var promise;
             offers.forEach((offer) => {
-                promise = OfferOrder.create({
-                    offer_id: offer.id, 
+                promise = OrderDetail.create({
+                    offer_id: offer.id,
+                    cost: offer.cost,
                     quantity: offer.quantity, 
                     order_id: order.id
                 },

@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       shopkeeper_id: DataTypes.INTEGER,
       restaurant_id: DataTypes.INTEGER,
       total: DataTypes.DOUBLE,
-      state: DataTypes.ENUM('creating', 'waiting', 'assigned', 'completed','cancelled')
+      state: DataTypes.ENUM('waiting', 'assigned', 'completed','cancelled')
     },
     {}
   );
