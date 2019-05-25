@@ -1,6 +1,6 @@
 const Shopkeeper = require('../sequelize-models').Shopkeeper;
 let sequelize = require('../sequelize-models').sequelize;
-let User = require('./User');
+let User = require('./UsersRepository');
 
 module.exports.create = function(userData) {
   return sequelize.transaction(t =>
@@ -8,7 +8,15 @@ module.exports.create = function(userData) {
       Shopkeeper.create(
         { user_id: user.dataValues.id },
         { transaction: t }
-      ).then(customer => user.setCustomer(customer, { transaction: t }))
+      )
     )
   );
-};
+}
+
+module.exports.getById = async function(shopkeeper_id) {
+  return await Shopkeeper.findOne({
+      where: {
+          user_id: shopkeeper_id
+      }
+  });
+}

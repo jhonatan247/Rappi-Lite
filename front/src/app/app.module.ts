@@ -1,3 +1,4 @@
+import { AdminAuthenticationGuard } from './guards/admin-authentication/admin-authentication.guard';
 import { ConfigurationService } from './services/configuration/configuration.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_INITIALIZER } from '@angular/core';
@@ -73,7 +74,8 @@ import { AgmCoreModule } from '@agm/core';
       multi: true
     },
     AuthenticationService,
-    RestaurantService
+    RestaurantService,
+    AdminAuthenticationGuard
   ],
   bootstrap: [AppComponent]
 })

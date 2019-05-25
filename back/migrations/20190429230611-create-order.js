@@ -14,10 +14,16 @@ module.exports = {
       shopkeeper_id: {
         type: Sequelize.INTEGER
       },
+      restaurant_id: {
+        type: Sequelize.INTEGER
+      },
+      total: {
+        type: Sequelize.DOUBLE
+      },
       state: {
         allowNull: false,
         type: Sequelize.ENUM,
-        values: ['completed', 'waiting', 'cancelled'],
+        values: ['waiting', 'assigned', 'completed', 'cancelled'],
         validate: {
           notEmpty: true
         }

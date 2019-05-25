@@ -2,7 +2,7 @@ let Customer = require('../models').Customer;
 
 module.exports.saveAddress = (req, res) => {
   if (req.body.value && req.body.latitude && req.body.longitude) {
-    Customer.saveAddress(req.body, req.decoded.id)
+    Customer.saveAddress(req.decoded.id, req.body)
       .then(() =>
         res.json({
           success: true,

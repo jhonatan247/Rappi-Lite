@@ -3,7 +3,12 @@ module.exports = (sequelize, DataTypes) => {
   const ShoppingCart = sequelize.define(
     'ShoppingCart',
     {
-      customer_id: DataTypes.INTEGER
+      customer_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true
+      },
+      restaurant: DataTypes.INTEGER,
+      total: DataTypes.DOUBLE,
     },
     {}
   );
