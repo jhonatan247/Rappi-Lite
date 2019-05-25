@@ -14,5 +14,6 @@ app.use('/api/guard', indexRouter.guard);
 app.use('/api/customer', indexRouter.customer);
 app.use('/api/restaurant', indexRouter.restaurant);
 app.use('/api/order', indexRouter.order);
+app.use('/api/shopping-cart', indexRouter.shoppingCart);
 
 module.exports = app;

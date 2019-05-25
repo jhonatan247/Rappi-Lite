@@ -5,8 +5,8 @@ module.exports.create = function(customer_id, t) {
     return ShoppingCart.create({customer_id: customer_id}, {transaction: t});
 }
 
-module.exports.getById = function(customer_id) {
-    return Offer.findOne({
+module.exports.getById = async function(customer_id) {
+    return await ShoppingCart.findOne({
         include: [
             {
                 model: sequelize.models.Offer,
@@ -14,7 +14,7 @@ module.exports.getById = function(customer_id) {
             }
         ],
         where: {
-            customer_id = customer_id
+            customer_id: customer_id
         }
     });
 }

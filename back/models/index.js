@@ -8,6 +8,9 @@ const CustomersRepository = require('./CustomersRepository');
 const RestaurantAdminsRepository = require('./RestaurantAdminsRepository');
 const ShopkeepersRepository = require('./ShopkeepersRepository');
 const OrdersRepository = require('./OrdersRepository');
+const OffersRepository = require('./OffersRepository');
+const ShoppingCartsRepository = require('./ShoppingCartsRepository');
+const ShoppingCart = require('./ShoppingCart');
 
 module.exports = {
   UsersRepository,
@@ -19,5 +22,8 @@ module.exports = {
   CustomersRepository,
   RestaurantAdminsRepository,
   ShopkeepersRepository,  
-  OrdersRepository
+  OrdersRepository,
+  ShoppingCart,
+  OffersRepository,
+  ShoppingCartsRepository
 };

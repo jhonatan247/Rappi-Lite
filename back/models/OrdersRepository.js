@@ -16,7 +16,7 @@ module.exports.addOrders = function(offers, customer_id, restaurant_id, total) {
             offers.forEach((offer) => {
                 promise = OrderDetail.create({
                     offer_id: offer.id,
-                    cost: offer.cost,
+                    cost: offer.price,
                     quantity: offer.quantity, 
                     order_id: order.id
                 },
@@ -30,4 +30,5 @@ module.exports.addOrders = function(offers, customer_id, restaurant_id, total) {
 }
 
 module.exports.getOrders = async function(shopkeeper_id) {
+
 }
