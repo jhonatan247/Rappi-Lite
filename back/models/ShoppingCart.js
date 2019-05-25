@@ -12,20 +12,18 @@ module.exports.addOffer = function(customer_id, offer_id, quantity, shoppingCart
                 )
             );
         }
-    } else {
-        return sequelize.transaction(t => 
-            OfferShoppingCart.create({shopping_cart_id: customer_id, offer_id: offer_id, quantity:quantity}, {transaction: t}).then(() =>
-                shoppingCart.update({restaurant: offer.dataValues.restaurant.id, total: offer.dataValues.price}, {transaction: t})
-            )
-        );
     }
+    return sequelize.transaction(t => 
+        OfferShoppingCart.create({shopping_cart_id: customer_id, offer_id: offer_id, quantity:quantity}, {transaction: t}).then(() =>
+            shoppingCart.update({restaurant: offer.dataValues.restaurant.id, total: offer.dataValues.price}, {transaction: t})
+        )
+    );
 }
 
 module.exports.getOfferAndShoppingCart = async function(customer_id, offer_id) {
     let result = {};
     result.shoppingCart = await ShoppingCartsRepository.getById(customer_id);
     result.offer = await OffersRepository.getById(offer_id);
-    console.log(result);
     return result;
 }
 
