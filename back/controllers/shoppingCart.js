@@ -9,6 +9,18 @@ module.exports.addOffer = (req, res) => {
         message: "Product correctly addded"
       })
     )
+    .catch(error => {console.log(error);res.status(500).json({ message: error.message })})
   )
-  .catch(error => {console.log(error);res.status(500).json({ message: error.message })});
+  .catch(error => res.status(500).json({ message: error.message }));
+}
+
+module.exports.checkout = (req, res) => {
+  ShoppingCart.checkout(req.decoded.id)
+  .then(() =>
+    res.json({
+      success: true,
+      message: "Order created"
+    })
+  )
+  .catch(error => res.status(500).json({ message: error.message }));
 }

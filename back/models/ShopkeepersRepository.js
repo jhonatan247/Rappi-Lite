@@ -11,4 +11,12 @@ module.exports.create = function(userData) {
       )
     )
   );
-};
+}
+
+module.exports.getById = async function(shopkeeper_id) {
+  return await Shopkeeper.findOne({
+      where: {
+          user_id: shopkeeper_id
+      }
+  });
+}

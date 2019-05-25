@@ -10,3 +10,14 @@ module.exports.createOrders = (req, res) => {
     })
     .catch(error => res.status(500).json({ message: error.message }));
 };
+
+module.exports.getOrders = (req, res) => {
+    OrdersRepository.getOrders(req.decoded.id)
+    .then((orders) => {
+        res.json({
+            success: true,
+            orders: orders
+        });
+    })
+    .catch(error => res.status(500).json({ message: error.message }));
+};

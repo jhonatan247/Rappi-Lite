@@ -2,7 +2,7 @@ const ShoppingCart = require('../sequelize-models').ShoppingCart;
 let sequelize = require('../sequelize-models').sequelize;
 
 module.exports.create = function(customer_id, t) {
-    return ShoppingCart.create({customer_id: customer_id}, {transaction: t});
+    return ShoppingCart.create({customer_id: customer_id, total: 0}, {transaction: t});
 }
 
 module.exports.getById = async function(customer_id) {
