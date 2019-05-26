@@ -113,7 +113,7 @@ ng serve
 
 _Go to [http://localhost:4200/](http://localhost:4200/)_
 
-## Authors ✒️
+## Authors 
 
 * **Jhonatan Torres** - [jhonatan247](https://github.com/jhonatan247)
 * **Andryut Huertas** - [Andryut](https://github.com/Andryut)
