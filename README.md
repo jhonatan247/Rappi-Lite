@@ -1,83 +1,83 @@
 # Rappi Web
 
-Es una página en la que una persona puede hacer pedidos a los restaurantes cercanos que estén registrados.
+Is a web app where people can make orders to nearby restaurants that ar registered.
 
-Un RappiTendero aceptara el pedido, se dirigirá al establecimiento y llevara el domicilio.
+A shopkeeper accepts the order an then he going to deliver it.
 
-Si desea ver la página visite este [link](https://thinking-park-237514.appspot.com/)
+[Full deployed project](https://thinking-park-237514.appspot.com/)
 
-## Comenzando 🚀
+## Lets begin
 
-_Estas instrucciones te permitirán tener el proyecto en funcionamiento en tu máquina local._
-
-
-### Pre-requisitos 📋
-
-_Sigue estos pasos para tener todo lo necesario para que el proyecto se pueda ejecutar._
+_The following instructions can get the project running on your environment._
 
 
-Primero debes [descargar](https://nodejs.org/en/) e instalar Node.js 
+### Before
 
-Instalando express
+_Follow this steps to be able of see the project running on your local environment._
+
+
+First, download and install [node.js](https://nodejs.org/en/) 
+
+Install express
 
 ```
 npm install express --save
 ```
 
-angular
+Install angular
 
 ```
 npm install -g @angular/cli@latest
 ```
 
-sequelize
+Install the sequelize command line interface
 
 ```
 npm install -g sequelize-cli
 ```
 
-modulo de sequelize
+Finally the node module for sequelize
 
 ```
 npm install --save sequelize
 ```
 
-Descarga [postgres](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads) e instálalo
+Now the database, which is [postgres](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
 
-modulo de PostgreSQL
+We need a postgres module to get connected with node
 
 ```
 npm install --save pg pg-hstore
 ```
 
-nodemon
+Finally lets install a node process monitor for the development environment
 
 ```
 npm install -g nodemon
 ```
 
-Ingresa a la página oficial de [postgis](https://postgis.net/install/) y sigue las instrucciones de descarga e instalación.
+To be able of track the location of the users on the database, you need to install [postgis](https://postgis.net/install/).
 
 
 
-### Instalación 🔧
+### Then, when the environment is prepared
 
 
-_Primero instalamos las dependencias del backend_
-
-```
-npm install
-```
-
-_Luego instalamos las dependencias del frontend_
+_First, on the back folder lets install the node dependencies_
 
 ```
 npm install
 ```
 
-_Antes de crear la base de datos, configuraremos un nuevo usuario_
+_Also in the front folder_
 
-_Para crearlo ejecuta los siguientes comandos_
+```
+npm install
+```
+
+_Before setup postgres, lets create a user_
+
+_for the development environment the default user is root and the default password is 1234_
 
 ```
 psql postgres postgres
@@ -85,55 +85,35 @@ CREATE ROLE root WITH LOGIN PASSWORD '1234';
 ALTER ROLE root CREATEDB;
 ```
 
-_Ahora creamos la base de datos_
+_To configure the database run the following scripts depending on your operative system_
+
+_For a windows system run the batch file in the back folder_
 
 ```
-psql -c "CREATE DATABASE rappi" postgres root
+reboot-database.bat
 ```
-
-_Seguimos con la instalación de la extensión de Postgis en la DB_
-
-```
-psql -c "CREATE EXTENSION POSTGIS" rappi root
-```
-
-_Corremos las migraciones_
+_For a unix based system run the shell script in the back folder_
 
 ```
-sequelize db:migrate
+reboot-database.sh
 ```
+_In order to run the application, we need to start the backend server and the angular server_
 
-_Con el siguiente comando insertamos datos de prueba en la DB_
-
-```
-psql -c "\i .seed-database" rappi root
-```
-
-_Ponemos a correr el servidor del back_
+_In the back folder run_
 
 ```
 nodemon
 ```
 
-_Y el servidor del front_
+_Then open another terminal window and run_
 
 ```
 ng serve
 ```
 
-_Abre el siguiente link en tu navegador [http://localhost:4200/](http://localhost:4200/)_
+_Go to [http://localhost:4200/](http://localhost:4200/)_
 
-
-## Contribuyendo 🖇️
-
-Para colaborar en este proyecto revisa nuestro [repositorio](https://github.com/jhonatan247/Rappi-Lite).
-
-
-## Versionado 📌
-
-Usamos [GitHub](https://github.com/) para el versionado.
-
-## Autores ✒️
+## Authors ✒️
 
 * **Jhonatan Torres** - [jhonatan247](https://github.com/jhonatan247)
 * **Andryut Huertas** - [Andryut](https://github.com/Andryut)
