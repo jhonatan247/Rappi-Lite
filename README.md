@@ -1,6 +1,6 @@
 # Rappi Web
 
-Is a web app where people can make orders to nearby restaurants that ar registered.
+Is a web app where people can make orders to nearby restaurants that are registered.
 
 A shopkeeper accepts the order an then he going to deliver it.
 
